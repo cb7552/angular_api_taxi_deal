@@ -1,0 +1,961 @@
+.btn_searchTaxi {
+  background: url(../../../assets/img/search.png);
+  min-width: 40px;
+  background-repeat: no-repeat;
+  background-size: 40px auto;
+  border: 1px solid #fff;
+  position: relative;
+  margin-top: 0;
+  height: 45px;
+  background-color: transparent;
+  font-size: 14px;
+  color: #f2c144;
+  border-radius: 0;
+  float: right;
+  text-transform: uppercase;
+}
+
+.h3 card {
+  background-color: #3b5998;
+  color: #30cfc0 !important;
+}
+
+agm-map {
+  height: 300px;
+}
+
+.map {
+  padding-bottom: 20px;
+}
+
+.banner_img {
+  height: 200px;
+  width: 60px;
+  padding-bottom: 20px;
+}
+
+.img-responsive {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  width: 50%;
+}
+
+.driver-img {
+  overflow: hidden;
+  height: 130px;
+}
+
+.mtop {
+  margin-top: 10vh;
+}
+
+.search-main {
+  margin-top: 20vh;
+  min-height: 80vh;
+}
+
+.result {
+  color: red;
+  margin: 0 auto;
+}
+
+marquee {
+  width: 100%;
+  padding: 10px 0;
+  background-color: #f2c144;
+}
+
+.gallary-wrap {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.gallary-wrap .items {
+  white-space: nowrap;
+  transition: transform 1s ease-in-out;
+}
+
+.gallary-wrap .items .item {
+  width: 100%;
+  height: 330px;
+  display: inline-block;
+  overflow: hidden;
+  text-align: center;
+}
+
+.slider-controller {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0px;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  height: 50px;
+}
+
+.slideBtn {
+  height: 50px;
+  background-size: contain;
+  padding: 10px;
+  width: 50px;
+  border: 0px;
+  top: 0%;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  color: transparent;
+}
+
+.slider-controller .prevbtn {
+  left: 10px;
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGhlaWdodD0iNTEycHgiIGlkPSJMYXllcl8xIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MTIgNTEyOyIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgd2lkdGg9IjUxMnB4IiB4bWw6c3BhY2U9InByZXNlcnZlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj48cG9seWdvbiBwb2ludHM9IjM1MiwxMTUuNCAzMzEuMyw5NiAxNjAsMjU2IDMzMS4zLDQxNiAzNTIsMzk2LjcgMjAxLjUsMjU2ICIvPjwvc3ZnPg==');
+}
+
+.slider-controller .nextbtn {
+  right: 10px;
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGhlaWdodD0iNTEycHgiIGlkPSJMYXllcl8xIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MTIgNTEyOyIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgd2lkdGg9IjUxMnB4IiB4bWw6c3BhY2U9InByZXNlcnZlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj48cG9seWdvbiBwb2ludHM9IjE2MCwxMTUuNCAxODAuNyw5NiAzNTIsMjU2IDE4MC43LDQxNiAxNjAsMzk2LjcgMzEwLjUsMjU2ICIvPjwvc3ZnPg==');
+}
+
+.item img {
+  max-width: 100%;
+  user-select: none;
+}
+
+.dots-control {
+  width: 100%;
+  text-align: center;
+  height: 20px;
+}
+
+.dots-control .dotBox {
+  width: 10px;
+  height: 10px;
+  background: #ddd;
+  border: 1px solid #999;
+  display: inline-block;
+  margin: 5px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.dots-control .dotBox.activeDot {
+  background: #6b482f;
+}
+
+.search_form_list_box {
+  background-color: #fff;
+}
+
+.seach_form_list {
+  height: 380px;
+  overflow: auto;
+}
+
+.sec_taxiideals {
+  .taxiideals_box {
+    .m-0 {
+      font-size: 14px;
+    }
+  }
+}
+
+.seach_form {
+  padding: 0 0 15px 0 !important;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.07);
+  overflow: hidden;
+
+  .tab-content {
+    width: 100%;
+    padding-top: 12px;
+
+    .formGroup {
+      padding-left: 20px;
+      padding-right: 20px;
+
+      .name {
+        color: #8b8b8b;
+        font-size: 12px;
+        font-family: 'OpenSans-Regular';
+      }
+
+
+      label {
+        display: flex;
+        margin-bottom: .5rem;
+        color: #495057 !important;
+        font-family: 'OpenSans-Regular';
+        font-size: 13px;
+      }
+
+      input {
+        margin: -3px 10px 0px 0;
+      }
+    }
+  }
+
+  .form-row {
+    margin: 0;
+
+    .search_box_menu {
+      padding: 0px !important;
+      margin: 0px !important;
+      border-color: #F0F0F0;
+
+      .row {
+        margin-right: -1px;
+        margin-left: 0;
+
+        .nav-tabs {
+          width: 100%;
+        }
+
+        .nav-tabs {
+          border-bottom: 1px solid rgba(0, 0, 0, 0.16);
+          padding-bottom: 0;
+        }
+
+        .nav-tabs .active {
+          color: #000;
+          border: 0;
+          background: #febc21;
+          border-radius: 0;
+        }
+
+        .nav-item a {
+          color: #000;
+          border: 0;
+          padding: 15px 0;
+        }
+
+        .col-md-4.form-group {
+          display: inline-block;
+
+        }
+
+        a:hover {
+          outline: 0;
+          text-decoration: none;
+        }
+
+        .s_b_m {
+          font-family: 'OpenSans-SemiBold';
+          text-transform: uppercase;
+          color: #000;
+          font-size: 14px;
+          padding: 0;
+
+          a:hover {
+            color: #febc21;
+          }
+
+          a.active:hover {
+            color: #000;
+          }
+        }
+      }
+    }
+  }
+}
+
+.form-group {
+  padding-right: 20px;
+  padding-left: 20px;
+  position: relative;
+
+  label {
+    margin-bottom: 8px !important;
+    border-color: #D4D4D4;
+    color: #8b8b8b;
+    font-size: 12px;
+    font-family: 'OpenSans-Regular';
+    text-transform: uppercase;
+    background: transparent;
+    margin-bottom: 0 !important;
+  }
+
+  img.locate-icon {
+    position: absolute;
+    bottom: 10px;
+    right: 22px;
+    height: 22px;
+    width: 15px;
+  }
+
+  .form-control {
+    padding-left: 0;
+    border-bottom: 0;
+    box-shadow: inset 0px -1px 0px 0px #D4D4D4 !important;
+    font-family: 'OpenSans-Regular';
+    font-size: 13px !important;
+    color: #495057 !important;
+    height: 28px;
+    padding: 0;
+
+
+
+    &:focus {
+      border-bottom: 0px;
+      border-color: rgba(0, 123, 255, 0.25);
+      outline: none;
+      box-shadow: inset 0px -1px 0px 0px #febc21 !important;
+
+    }
+  }
+}
+
+
+.search-result-btn {
+
+
+  &:hover {
+    background: rgb(254, 188, 33) !important;
+    border-color: transparent !important;
+  }
+
+  &:focus {
+    box-shadow: none;
+  }
+
+  &:active {
+    background: rgb(254, 188, 33) !important;
+    border-color: transparent !important;
+  }
+}
+
+section {
+  .heder_desc {
+    font-family: 'OpenSans-SemiBold';
+    font-size: 30px;
+    color: #000;
+  }
+
+  .taxiideals_box {
+    text-align: center;
+
+    .row {
+      text-align: initial;
+
+      .img-container {
+        display: flex;
+        align-items: center;
+        padding: 0;
+      }
+    }
+  }
+
+}
+
+.sec_benefits {
+  text-align: center;
+
+  .container {
+    .row {
+      text-align: initial;
+
+    }
+  }
+
+  .heder_desc {
+    display: inline-block;
+  }
+}
+
+.sec_texideal_offers {
+  text-align: center;
+
+  .container {
+    text-align: left;
+
+    .card {
+      //height: 480px;
+      height: 350px;
+
+      .card-title {
+        font-family: 'OpenSans-SemiBold';
+        font-size: 24px;
+      }
+
+      .card-text {
+        font-family: 'OpenSans-Regular';
+        font-size: 14px;
+      }
+
+      .card-body {
+        overflow: hidden;
+
+        .d-flex {
+          padding: 8px 0;
+        }
+      }
+
+      .card-footer {
+        background: #fff;
+        text-align: right;
+
+        .td_offer_more {
+          font-family: 'OpenSans-Regular';
+          color: #000;
+          font-size: 16px;
+          padding: 8px 25px;
+
+          span {
+            font-family: 'OpenSans-SemiBold';
+          }
+
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+
+  .btn-more {
+    background: #e1e1e1;
+    padding: 13px 100px;
+    border-radius: 3px;
+    font-family: 'OpenSans-Regular';
+    font-size: 16px;
+    color: #000;
+    margin: 15px 0 0;
+
+    &:hover {
+      border-color: transparent !important;
+    }
+
+    &:focus {
+      box-shadow: none;
+    }
+
+    &:active {
+      background: #e1e1e1 !important;
+      border-color: transparent !important;
+    }
+  }
+}
+
+.sec_app {
+  text-align: center;
+
+  .p-2 {
+    height: 60px;
+  }
+}
+
+.texideal_venders_box {
+  .card {
+    padding: 0;
+    height: auto;
+
+    .td_venders_img {
+      position: absolute;
+      top: -30px;
+      right: 12px;
+      width: 63px;
+      height: 60px;
+      background-color: #fab920;
+      border-radius: 40px;
+      box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.4);
+      padding: 16px;
+      display: flex;
+    }
+
+    .card-body {
+      .card-title {
+        font-family: 'OpenSans-SemiBold';
+        font-size: 22px;
+      }
+
+      .card-text {
+        font-family: 'OpenSans-Regular';
+        font-size: 13px;
+        padding: 5px 0;
+      }
+    }
+
+    .card-footer {
+      background: transparent;
+      border: 0;
+
+      a.card-link.td_enquiry {
+        border-radius: 2px;
+        background-color: #febc21;
+        padding: 5px 17px;
+        color: #000;
+        font-size: 14px;
+        font-family: OpenSans-Regular;
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
+
+.sec_owners {
+  .my-3 {
+    font-family: 'OpenSans-Regular';
+    font-size: 37px;
+  }
+
+  .container {
+    p {
+      font-family: 'OpenSans-Regular';
+      font-size: 14px;
+    }
+  }
+}
+
+.sec_testimonial {
+  text-align: center;
+
+  .container {
+    .row {
+      .testimonial_box {
+        padding: 30px 40px !important;
+
+        p {
+          font-family: 'OpenSans-Regular';
+          font-size: 14px;
+          color: #000;
+
+          i.fa {
+            font-size: 32px;
+          }
+        }
+
+        h4 {
+          font-family: 'OpenSans-SemiBold';
+          font-size: 18px;
+          color: #000;
+        }
+
+        h6 {
+          font-family: 'OpenSans-Regular';
+          font-size: 13px;
+        }
+      }
+
+    }
+
+    .carousel-indicators {
+      bottom: 5px !important;
+
+      li.active {
+        width: 18px !important;
+        height: 18px !important;
+      }
+    }
+  }
+}
+
+.sec_client {
+  .heder_desc {
+    margin-top: 0 !important;
+    margin-bottom: 1.3rem !important;
+  }
+
+  a {
+    i {
+      color: #000;
+      font-size: 40px;
+    }
+  }
+
+  .carousel-inner {
+    height: 70px;
+  }
+
+  .carousel-control-prev {
+    background-color: #fff;
+    height: 60px;
+    width: 60px;
+    margin: 0px 0px 0px -80px;
+    border-radius: 50%;
+    display: flex;
+    padding-left: 0px;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  }
+
+  .carousel-control-next {
+    background-color: #fff;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    margin: 0px -80px 0px 0px;
+    display: flex;
+    padding-right: 0px;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  }
+}
+
+.sec_notroles {
+  .container {
+    .px-0 {
+      h5 {
+        font-family: 'OpenSans-SemiBold';
+        font-size: 16px;
+        color: #000;
+      }
+
+      p {
+        font-family: 'OpenSans-Regular';
+        font-size: 13px;
+        color: #2d2d2d;
+      }
+    }
+  }
+}
+
+.search_box .btn {
+  background: rgb(254, 188, 33);
+  border: 1px solid rgb(254, 188, 33);
+  width: 100%;
+  color: #000;
+
+  &:hover {
+    background: #dc9e0c;
+    border: 1px solid #dc9e0c;
+  }
+
+  &:active {
+    background: #dc9e0c;
+    border: 1px solid #dc9e0c;
+  }
+
+  &:focus {
+    background: #dc9e0c;
+    border: 1px solid #dc9e0c;
+    box-shadow: none;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .sec_taxiideals {
+    .row {
+      display: contents;
+    }
+  }
+
+  .sec_client {
+    .carousel-item {
+      height: 80%;
+      width: 80%;
+      margin: 0px 0px 0 45px;
+    }
+
+    .carousel-control-prev {
+      height: 30px;
+      width: 30px;
+      margin: 0;
+    }
+
+    .carousel-control-next {
+      height: 30px;
+      width: 30px;
+      margin: 0;
+    }
+
+    a i {
+      color: #000;
+      font-size: 25px;
+    }
+  }
+
+  .img-fluid {
+    max-width: 85%;
+    height: auto;
+  }
+
+  .sec_testimonial {
+    .container {
+      .row {
+        .testimonial_box {
+          h4 {
+            font-size: 14px !important;
+          }
+
+          h6 {
+            font-size: 9px;
+          }
+
+          p {
+            font-family: 'OpenSans-Regular';
+            font-size: 10px;
+            color: #000;
+
+            i.fa {
+              font-size: 14px;
+              padding: 5px;
+              margin: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .img-fluid {
+    max-width: 70%;
+    height: 25px;
+    float: inherit;
+  }
+
+  .sec_client {
+
+    .carousel-control-prev {
+      height: 25px;
+      width: 25px;
+      margin: 0;
+    }
+
+    .carousel-control-next {
+      height: 25px;
+      width: 25px;
+      margin: 0;
+    }
+
+    a i {
+      color: #000;
+      font-size: 20px;
+    }
+  }
+
+}
+
+@media screen and (max-width: 575px) {
+  .slider {
+    display: none !important;
+  }
+
+  .carousel-indicators {
+    display: none;
+  }
+
+  .nav-item {
+    color: #000 !important;
+    display: block;
+    text-align: center;
+    font-family: 'OpenSans-SemiBold';
+    font-size: 14px;
+  }
+
+  .nav-item a {
+    color: #000 !important;
+    border: 0;
+  }
+
+  .nav-tabs {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.16);
+    padding-bottom: 12px;
+  }
+
+  .nav-tabs .active {
+    color: #000;
+    border: 0;
+    background: none !important;
+  }
+
+  .nav-link.active:after {
+    content: '';
+    border-bottom: 4px solid #febc21;
+    position: absolute;
+    bottom: -2px;
+    left: 30px;
+    border-radius: 10px;
+    right: 30px;
+  }
+
+  a:hover {
+    outline: 0;
+    text-decoration: none;
+  }
+
+
+
+  // .nav-tabs {
+  //   border-bottom: 1px solid rgba(0, 0, 0, 0.16);
+  //   padding-bottom: 0;
+  // }
+
+  // .nav-tabs .active {
+  //   color: #000;
+  //   border: 0;
+  //   background: #febc21;
+  //   border-radius: 0;
+  // }
+
+
+  .sec_texideal_offers {
+    .container .card {
+      height: auto !important;
+    }
+  }
+
+  .col-sm-4 {
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+  }
+
+  .col-sm-8 {
+    flex: 0 0 66.666667%;
+    max-width: 66.666667%;
+    display: initial;
+    padding: 20px;
+  }
+
+  section {
+    .taxiideals_box {
+      text-align: left;
+
+      .row {
+        .img-container {
+          display: initial;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) and (min-width: 576px) {
+  .sec_client {
+    .carousel-item {
+      height: 90%;
+      width: 90%;
+      margin: 0px 0px 0px 28px;
+    }
+
+    .carousel-control-prev {
+      height: 40px;
+      width: 40px;
+      margin: 5px 0px 0px -20px;
+    }
+
+    .carousel-control-next {
+      height: 40px;
+      width: 40px;
+      margin: 5px -20px 0px 0px;
+    }
+  }
+}
+
+@media screen and (max-width: 1330px) and (min-width: 768px) {
+  .sec_client {
+    .carousel-item {
+      height: 90%;
+      width: 90%;
+      margin: 0px 0px 0px 40px;
+    }
+
+    .carousel-control-prev {
+      height: 40px;
+      width: 40px;
+      margin: 5px 0px 0px -25px;
+    }
+
+    .carousel-control-next {
+      height: 40px;
+      width: 40px;
+      margin: 10px -25px 0px 0px;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) and (min-width: 576px) {
+  .search_box {
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      margin-right: -10px;
+      margin-left: -15px;
+      margin-top: 0px;
+    }
+  }
+
+  .seach_form {
+    .form-row {
+      .search_box_menu {
+        .row {
+          .nav-item a {
+            padding: 14px 0;
+          }
+        }
+      }
+    }
+  }
+
+  .search-result-btn {
+    padding: 0px;
+  }
+
+  .form-group {
+    margin-bottom: 11px;
+  }
+}
+
+@media screen and (max-width: 991px) and (min-width: 768px) {
+  .sec_benefits {
+    .taxibenefits_box span {
+      margin-left: -20px;
+    }
+  }
+
+  .hidden-md {
+    display: none;
+  }
+
+  .texideal_venders_box .card {
+    height: 400px;
+  }
+}
+
+.sec_texideal_offers {
+  .card {
+    padding: 0;
+  }
+}
+
+@media (max-width:992px) {
+  h5 {
+    font-size: 13px !important;
+
+  }
+
+  h4 {
+    font-size: 18px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  h2 {
+    font-size: 18px !important;
+    margin: 0 !important;
+    padding: 15px !important;
+  }
+
+  .taxibenefits_box {
+    .px-sm-0 {
+      padding-left: 30px;
+    }
+  }
+
+  .sec_taxiideals {
+    .mt-5 {
+      margin-top: 1em !important
+    }
+
+  }
+
+  .sec_owners {
+    .container {
+      p {
+        font-size: 13px;
+      }
+    }
+  }
+}

@@ -1,0 +1,46 @@
+[
+  {
+    "code": "All",
+    "label": "All"
+  },
+  {
+    "code": "Auto",
+    "label": "Auto"
+  },
+  {
+    "code": "Taxi",
+    "label": "Taxi"
+  },
+  {
+    "code": "Taxi4",
+    "label": "Taxi4"
+  },
+  {
+    "code": "Taxi6",
+    "label": "Taxi6"
+  },
+  {
+    "code": "Transport",
+    "label": "Transport"
+  },
+  {
+    "code": "Mini/Hatchback (Seats 4+1)",
+    "label": "Mini/Hatchback (Seats 4+1)"
+  },
+  {
+    "code": "Seadan (Seats 4+1)",
+    "label": "Seadan (Seats 4+1)"
+  },
+  {
+    "code": "SUV-Tavara (Seats 7+1)",
+    "label": "SUV-Tavara (Seats 7+1)"
+  },
+  {
+    "code": "SUV-Innova (Seats 7+1)",
+    "label": "SUV-Innova (Seats 7+1)"
+  },
+  {
+    "code": "Tempo Traveller (Seats 12+1)",
+    "label": "Tempo Traveller (Seats 12+1)"
+  }
+]

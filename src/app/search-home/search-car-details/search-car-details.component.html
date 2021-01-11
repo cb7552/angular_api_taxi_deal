@@ -1,0 +1,403 @@
+<section class="dt_banner">
+  <div class="search_box_con h-100">
+    <div class="card-detail-page container">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="cardetails" *ngIf="carDetails">
+              <div class="card-deck">
+                <div class="card">
+                  <div class="row row-eq-height">
+                    <div class="col-12">
+                      <div class="profile">
+                        <img src="assets/img/custom/taxi.png" alt="taxi-icon" class="icontaxi icon">
+                      </div>
+                      <div class="travelcontent">
+                        <div class="card-card">
+                          <div class="container-fluid">
+                            <div class="row">
+                              <label class="name col-sm-8 no-gutters">{{carDetails?.name}}</label>
+                              <label class="name1 col-sm-4 no-gutters text-right d-none d-sm-block"> Waiting time
+                                {{carDetails?.waitingTime}} min </label>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card-body">
+                          <star-rating [(value)]="carDetails.star" checkedcolor="orange" size="20" #starrating>
+                          </star-rating>
+                          <label class="name2"> {{carDetails?.star}} Ratings & {{carDetails?.totalComments}}
+                            Comments</label>
+                        </div>
+                        <div class="lable">
+                          <!-- <label class="name3"> ₹141 - ₹155</label> -->
+                          <label class="name3"> Approximate price : {{this.usertotalprice}}</label>
+                          <img src="assets/img/custom/rupee.png" alt="rupee-icon" class="iconrupee iconn">
+                          <img src="assets/img/custom/wifi.png" alt="wifi-icon" class="iconwifi iconn">
+                          <img src="assets/img/custom/taxi.png" alt="taxi-icon" class="icontaxi iconn">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-6 col-12 map ">
+            <nav>
+              <div class="display">
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                  <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
+                    aria-controls="nav-home" aria-selected="true" translate>Car Gallery</a>
+                  <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
+                    aria-controls="nav-profile" aria-selected="false" translate>Map</a>
+                </div>
+              </div>
+            </nav>
+            <div class="tab-content tabslide" id="nav-tabContent">
+              <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                  <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                  </ol>
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img class="d-block w-100" [src]="'data:image/jpg;base64,'+ this.image2"
+                        style="width: 300px;height:330px" onError="this.src = '../../assets/img/minilogo.png'"
+                        alt="First slide">
+                      <!-- <img [src]="carDetails?.imageInfo?.imageUrl" class="img-responsive"
+                                onError="this.src = '../../assets/img/minilogo.png'"  alt="First slide">-->
+                      <!--<img src="'base64,' + {{carDetails?.imageInfo?.imageUrl}}" alt="First slide" class="d-block w-100">-->
+                    </div>
+                    <!--   <div class="carousel-item">
+                              <img class="d-block w-100" [src]="imageUrl" alt="Second slide">
+                            </div> 
+                           <div class="carousel-item">
+                              <img class="d-block w-100" src="assets/img/custom/car.jpeg" alt="Third slide">
+                            </div> -->
+                  </div>
+                  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </div>
+                <div class="card" *ngIf="isRENT">
+                    <h3 translate>Approximate Price</h3>
+                    <div class="card-body point">
+                      <table class="table table-bordered table-hover">
+                      <tr>
+                        <th translate>CarType</th>
+                        <th translate>Hours</th>
+                        <th translate>Kms</th>
+                        <th translate>Price</th>
+                        <th translate>Additional Km</th>
+                       </tr>
+                      <tr>
+                          <td>{{carDetails?.cartype}}</td>
+                          <td>{{carDetails?.hour}}</td>
+                          <td>{{carDetails?.km}}</td>
+                          <td>{{carDetails?.price}}</td>
+                          <td>{{carDetails?.price}}</td>
+                         </tr>
+                    </table>
+                    </div>
+                      <!-- <div class="card-body point" *ngIf="isTAXI">
+                         <div class="row form-group" >
+                          <div class="col-md-4">
+                            <label for="" translate>CarType</label>
+                            <label class="form-control rounded-0">
+                              Taxi</label>
+                             </div>
+                            <div class="col-md-4">
+                              <label for="" translate>Hours</label>
+                              <label class="form-control rounded-0">
+                                {{carDetails?.hour}}</label>
+                            </div>
+                          <div class="col-md-4">
+                            <label for="" translate>Price</label>
+                            <label class="form-control rounded-0">
+                                <i class="fa fa-rupee"></i>
+                              {{carDetails?.price}} </label>
+                          </div>
+                           <div class="col-md-3">
+                              <label for="" translate>Base Price</label>
+                              <label class="form-control rounded-0">
+                                <i class="fa fa-rupee"></i>
+                                {{carDetails?.basePrice}}</label>
+                            </div> 
+                        </div> 
+                      </div> -->
+                    </div>
+                    <div class="card" *ngIf="isTAXI">
+                      <h3 translate>Approximate Price</h3>
+                      <div class="card-body point">
+                        <table class="table table-bordered table-hover">
+                        <tr>
+                          <th translate>CarType</th>
+                          <th translate>Base</th>
+                          <th translate>Kms</th>
+                          <th translate>Price</th>
+                         </tr>
+                        <tr>
+                            <td>{{prices?.cartype}}</td>
+                            <td>{{prices?.basePrice}}</td>
+                            <td>{{prices?.km}}</td>
+                            <td>{{prices?.price}}</td>
+                           </tr>
+                      </table>
+                      </div>
+                      </div>
+                  </div>
+              <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="13"
+                  (mapClick)="addMarker($event.coords.latitude, $event.coords.longitude)">
+                  <agm-marker [latitude]="carDetails?.latitude" [longitude]="carDetails?.longitude"
+                    [markerDraggable]="false" (markerClick)="selectMarker($event)">
+                    <agm-info-window [disableAutoPan]="false">
+                      Name Online: <strong>{{carDetails?.name}}</strong><br>
+                      CarType: <strong>{{carDetails?.cartype}}</strong><br>
+                      PhoneNumber: <strong>{{carDetails?.phoneNumber}}</strong><br>
+                      Login Status: <strong>{{carDetails?.driverStatus}}</strong>
+                    </agm-info-window>
+                  </agm-marker>
+                </agm-map>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-12 details-container">
+            <div class="seach_form container">
+              <div class="card-deck">
+                <div class="card col-12">
+                  <div [formGroup]="contactForm" class="form">
+                    <div class="form-row ">
+                      <div class="title">
+                        <h3>Book a {{carDetails?.category}} Cab</h3>
+                      </div>
+                      <div class="tab-content">
+                        <div id="taxi">
+                          <div class="form-group col-12">
+                            <label class="mb-0" for="inputEmail4" translate>Pickup Location</label>
+                            <input type="text" placeholder="{{'Source Address' | translate}}" autocorrect="off"
+                              autocapitalize="off" spellcheck="off" class="form-control ds-input" role="combobox"
+                              aria-expanded="true" aria-owns="algolia-autocomplete-listbox-0" formControlName="source"
+                              id="source" name="source" #sourcesearch
+                              style="position: relative; vertical-align: top;" />
+                            <img src="assets/img/custom/locate.png" draggable="false" alt="locate-icon"
+                              class="locate-icon">
+                          </div>
+                          <div class="form-group col-12" >
+                            <label class="mb-0" for="inputEmail4" translate>Drop Location</label>
+                            <input type="text" placeholder="{{'Destination Address' | translate}}" autocorrect="off"
+                              autocapitalize="off" spellcheck="off" class="form-control" formControlName="destination"
+                              id="destination" name="destination" #destinationsearch />
+                            <img src="assets/img/custom/locate.png" draggable="false" alt="locate-icon"
+                              class="locate-icon">
+                          </div>
+                          <div class="form-group row" >
+                            <div class="col-4">
+                                <label class="mb-0 det" for="inputEmail4" translate>Distance : {{this.distance}}</label>
+                            </div>
+                            <div class="col-4">
+                                <label class="mb-0 det" for="inputEmail4" translate>Durations : {{this.durations}}</label>
+                             </div>
+                             <div class="col-4">
+                              <label class="mb-0 det" for="inputEmail4" translate>Total Price : {{this.totalprice}}</label>
+                           </div>
+                          </div>
+                          <div class="form-group col-12">
+                            <label class="mb-0 det" for="inputEmail4" translate>Name</label>
+                            <input type="text" placeholder="{{'Enter name' | translate}}" autocorrect="off"
+                              autocapitalize="off" spellcheck="off" class="form-control" formControlName="name"
+                              id="name" name="name" #name />
+                          </div>
+                          <div class="form-group col-12">
+                            <label class="mb-0 det" for="inputEmail4" translate>Email</label>
+                            <input type="text" placeholder="{{'Enter email' | translate}}" autocorrect="off"
+                              autocapitalize="off" spellcheck="off" class="form-control" formControlName="email"
+                              id="email" name="email" #email />
+                          </div>
+                          <div class="form-group col-12">
+                            <label class="mb-0 det" for="inputEmail4" translate>Phone Number</label>
+                            <international-phone-number id="phonenumber" type="text" class="form-control" formControlName="phonenumber"
+                            placeholder="Enter phone number"  [defaultCountry]="'in'" 
+                            [required]="true" name="phonenumber" [allowedCountries]="['in', 'ch', 'gb']"  *ngIf="!isIndia"></international-phone-number>
+                            <international-phone-number id="phonenumber" type="text" class="form-control" formControlName="phonenumber"
+                            placeholder="Enter phone number"  [defaultCountry]="'ch'" 
+                            [required]="true" name="phonenumber" [allowedCountries]="['ch', 'in', 'gb']"  *ngIf="isIndia"></international-phone-number>
+                            <!-- <input type="text" placeholder="{{'Enter phonenumber' | translate}}" autocorrect="off"
+                              autocapitalize="off" spellcheck="off" class="form-control" formControlName="phonenumber"
+                              id="phonenumber" name="phonenumber" #phonenumber /> -->
+                          </div>
+                          <!-- <div class="form-group col-12">
+                            <label class="mb-0 det" for="inputEmail4" translate>Subject</label>
+                            <input type="text" placeholder="{{'Enter subject' | translate}}" autocorrect="off"
+                              autocapitalize="off" spellcheck="off" class="form-control" formControlName="subject"
+                              id="subject" name="subject" #subject />
+                          </div> -->
+                          <div class="form-group row">
+                            <div class="col-6">
+                                  <label class="mb-0 det" for="inputEmail4" translate>Subject</label>
+                              <input type="text" placeholder="{{'Enter subject' | translate}}" autocorrect="off"
+                                autocapitalize="off" spellcheck="off" class="form-control" formControlName="subject"
+                                id="subject" name="subject" #subject />
+                              </div>
+                              <div class="col-6">
+                                  <label class="mb-0 det" for="inputEmail4" translate></label>
+                                <select class="form-control" formControlName="subject" id="subject" name="subject" #subject >
+                                    <option vlaue="" disabled>Select drop down </option>
+                                  <option vlaue="I want to book" >I want to book </option>
+                                  <option vlaue="I want to cancel" >I want to cancel </option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="form-group row" >
+                            <div class="col-6">
+                                <label class="mb-0 det" for="inputEmail4" translate>Start Date</label>
+                                <!-- <input name="startDate" placeholder="{{' Enter StartDate' | translate}}" formControlName="startDate" [dpDayPicker]="config" #startDate/>   -->
+                                <ejs-datetimepicker id='datetimepicker' format='yyyy.MM.dd HH:mm'formControlName="startDate"  placeholder='Select a date' [value]='dateValue'  #startDate></ejs-datetimepicker>
+                               </div>
+                              <div class="col-6">
+                                  <label class="mb-0 det" for="inputEmail4" translate>End Date</label>
+                                  <!-- <input name="endDate" placeholder="{{' Enter endDate' | translate}}" formControlName="endDate" [dpDayPicker]="config" #endDate/>   -->
+                                  <ejs-datetimepicker id='datetimepicker' format='yyyy.MM.dd HH:mm' formControlName="endDate"  placeholder='Select a date' [value]='dateValue' #endDate></ejs-datetimepicker>
+                              </div>
+                          </div>
+                          <div class="form-group col-12">
+                            <label class="mb-0 det" for="inputEmail4" translate>Message</label>
+                            <input type="text" placeholder="{{'Enter message' | translate}}" autocorrect="off"
+                              autocapitalize="off" spellcheck="off" class="form-control" formControlName="message"
+                              id="message" name="message" #message />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <button type="submit" (click)="submitContactForm()" class="btn btn-primary search-result-btn"
+                        translate>Submit</button>
+                      <!--<p class="cancel text-center">Cancel</p> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid">
+        <!-- <div class="row">
+          <div class="review">
+            <div class="col-12">
+              <div class="card">
+                <div class="carreview">
+                  <h3>{{this.reviewDetails.length}} Customer reviews</h3>
+                  <div class="card-body point">
+                    <star-rating [(value)]="this.displayRatingScore" checkedcolor="orange" size="20" #starrating>
+                    </star-rating>
+                    <label class="rate"> {{this.displayRatingScore}} out of 5 stars </label>
+                  </div>
+                </div>
+                <div *ngFor="let item of reviewDetails; let i = index">
+                  <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                      <div>
+                        <img src="assets/img/custom/taxi.png" alt="taxi-icon" class="icontaxi iconn">
+                        <label class="card-text3">{{item?.id}}</label>
+                      </div>
+                      <div>
+                        <star-rating [(value)]="item.rating" checkedcolor="orange" size="20" #starrating></star-rating>
+                        <label class="card-text3">{{item?.rating}}</label>
+                      </div>
+                      <div>
+                        <label class="card-text1">{{item?.formattedDate}}</label>
+                      </div>
+                      <p>{{item?.comment}}</p>
+                      <!--<label class="card-text2 ">Read More</label>
+                    </blockquote>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div> -->
+        <div class="row" >
+            <div class="col-12">
+              <div class="cardetails">
+                <div class="card-deck">
+                  <div class="card" >
+                    <div class="row row-eq-height">
+                      <div class="col-12">
+                          <div class="review">
+                             <div class="carreview">
+                                    <h3 translate>{{this.reviewDetails.length}} Customer reviews</h3>
+                                    <div class="card-body point">
+                                      <star-rating [(value)]="this.displayRatingScore" checkedcolor="orange" size="20" #starrating>
+                                      </star-rating>
+                                      <label class="rate" translate> {{this.displayRatingScore}} out of 5 stars </label>
+                                    </div>
+                                  </div>
+                                  <div *ngFor="let item of reviewDetails; let i = index">
+                                  <div class="card" *ngIf="i<15">
+                                    <div class="card-body">
+                                      <blockquote class="blockquote mb-0">
+                                        <div>
+                                          <img src="assets/img/custom/taxi.png" alt="taxi-icon" class="icontaxi iconn">
+                                          <label class="card-text3">{{item?.id}}</label>
+                                        </div>
+                                        <div>
+                                          <star-rating [(value)]="item.rating" checkedcolor="orange" size="20" #starrating></star-rating>
+                                        </div>
+                                        <div>
+                                          <label class="card-text1">{{item?.formattedDate}}</label>
+                                        </div>
+                                        <p>{{item?.comment}}</p>
+                                        <!--<label class="card-text2 ">Read More</label>-->
+                                      </blockquote>
+                                    </div>
+                                  </div>
+                              </div>
+                             </div>
+                         </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <div class="row card-body point">
+          <div class="col-12">
+            <div class="boxes">
+              <div [formGroup]="reviewForm" class="form">
+                <div class="form-group">
+                  <div *ngFor="let element of starRatingElements">
+                    <div class="rating-text" translate>Rate It</div>
+                    <star-rating [(value)]="element.value" checkedcolor="{{element.checkedcolor}}"
+                      size="{{element.size}}" readonly={{element.readonly}} (rate)="onRate($event)" #starrating>
+                    </star-rating>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <textarea type="text" placeholder="{{'Enter message' | translate}}" class="form-control"
+                    formControlName="comment" id="comment" name="comment" #comment></textarea>
+                </div>
+                <div class="col-6" align="center">
+                  <button type="submit" (click)="postreview()" class="btn btn-primary search-result-btn"
+                    translate>Submit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

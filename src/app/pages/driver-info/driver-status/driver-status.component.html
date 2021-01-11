@@ -1,0 +1,221 @@
+<div class="content-wrapper">
+  <div class="main-content">
+    <div class="container-fluid">
+      <div class="boxes">
+        <div class="rowl" [hidden]="isEdit" [hidden]="isdisplay">
+          <div *ngIf="myTaxis" class="col-md-12">
+            <div class="content table-responsive table-full-width table-striped">
+              <div class="col-12" style="align-self: right;">
+                <!-- <nav class="navbar" style="background-color:white">
+                  <input class="form-control" font-color="#000" placeholder="Filter Values..." type="text" name="search"
+                    [(ngModel)]="filterText">
+                </nav> -->
+                <div class="ride-status">
+                  <div class="row title">
+                    <div class="col-lg-7 col-12">
+                        <label class="heading">Driver Ride Status</label>
+                    </div>
+
+
+                <div class="col-lg-5 col-12">
+                  <div class="form-inline"> 
+                      <input class="form-control mr-sm-2" [(ngModel)]="filterText" type="search" placeholder="SEARCH" aria-label="Search">
+                      <i class="fa fa-search" aria-hidden="true"></i>
+                  </div>
+                  <p class="add-new" routerLink="/add_driver">
+                      <label class="add">ADD NEW</label>
+                      <img src="assets/img/plus.svg" alt="Add" class="plus">
+                      <!-- <i class="fa fa-plus" aria-hidden="true"></i> -->
+                  </p>
+      </div>
+
+      
+ </div>
+              </div>
+</div> 
+<app-ag-grid></app-ag-grid>    
+<table class="table table-bordered table-hover">
+            <tr>
+              <!-- <th translate>Login Status</th>-->
+              <th translate>Driver Name</th>
+              <th translate>Driver Status</th>
+              <th translate>Phone Number</th>
+              <th translate>Car Type</th>
+              <!-- <th translate>Driver Location</th> -->
+              <!-- <th translate>Action</th> -->
+            </tr>
+            <tr *ngFor="let taxi of (myTaxis | customfilter : {name: filterText, driverStatus: filterText,
+               phoneNumber: filterText, cartype: filterText} : false);let i=index">
+              <!-- <td>
+                <app-vehicle-status [vehicleId]="taxi?.driverId"></app-vehicle-status>
+              </td> -->
+    
+              <td>{{ taxi?.name }}</td>
+              <td>{{ taxi?.driverStatus }}</td>
+              <td>{{ taxi?.phoneNumber }}</td>
+              <td>{{ taxi?.cartype }}</td>
+              <td> {{ taxi?.address ? taxi?.address : NA}}</td>
+              <td>
+                <button (click)="editDriver(taxi?.id)" type="button" class="btn btn-info" translate>Edit
+                  Driver</button>&nbsp;
+                <button (click)="deleteTaxi(taxi?.driverId)" type="button" class="btn btn-danger"
+                  translate>Delete</button>&nbsp;
+                <button (click)="tracking(taxi)" type="button" class="btn btn-success" translate>Tracking</button>
+              </td>
+            </tr>
+         </table>
+            </div>
+          </div>
+        </div>
+      
+        <div>
+          <div class="row" [hidden]="!isEdit">
+            <div class="col-md-10">
+              <h3 translate>Driver Detail</h3>
+              <form class="form" [formGroup]="driverStatusForm">
+                <div class="form-group row">
+                  <div class="col-md-6">
+                    <label for="" translate>Driver Name</label>
+                    <label name="drivername" class="form-control rounded-0"
+                      translate><b>{{driverDetails?.drivername}}</b></label>
+                    <!-- <input formControlName="drivername" name="drivername" type="text" class="form-control rounded-0"
+                      required /> -->
+                  </div>
+                  <div class="col-md-6">
+                    <label for="" translate>Phone Number</label>
+                    <label name="driverPhonenumber" class="form-control rounded-0"
+                      translate><b>{{driverDetails?.driverPhonenumber}}</b></label>
+                    <!-- <input formControlName="driverPhonenumber" name="driverPhonenumber" type="text"
+                      class="form-control rounded-0" required /> -->
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-md-6">
+                    <label for="" translate>Price</label>
+                    <input formControlName="price" name="price" type="text" class="form-control rounded-0" required />
+                  </div>
+                  <div class="col-md-6">
+                    <label for="" translate>Seats</label>
+                    <input formControlName="seats" name="seats" type="text" class="form-control" required />
+                  </div>
+                </div>
+                <div class="form-group row">
+
+                  <div class="col-md-6">
+                    <label for="" translate>PeakPrice</label>
+                    <input formControlName="peakPrice" name="peakPrice" type="text" class="form-control rounded-0"
+                      required />
+                  </div>
+                  <div class="col-md-6">
+                    <label for="" translate>VehicleBrand</label>
+                    <input formControlName="vehicleBrand" name="vehicleBrand" type="text" class="form-control " required
+                      minlength="6" />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-md-6">
+                    <label for="" translate>TaxiNumber</label>
+                    <input formControlName="taxiNumber" name="taxiNumber" type="text" class="form-control rounded-0"
+                      required />
+                  </div>
+                  <div class="col-md-6">
+                    <label for="" translate>Car Type</label>
+                    <!-- <input formControlName="carType" name="carType" type="text" class="form-control rounded-0"
+                      required /> -->
+                    <label name="carType" class="form-control rounded-0"
+                      translate><b>{{driverDetails?.carType}}</b></label>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-md-6">
+                    <label for="" translate>Vehicle Year</label>
+                    <input formControlName="year" name="year" type="text" class="form-control " required
+                      minlength="6" />
+                  </div>
+                  <div class="col-md-6">
+                    <label for="" translate>Driver Status</label>
+                    <label name="status" class="form-control rounded-0"
+                      translate><b>{{driverDetails?.status}}</b></label>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-md-6">
+                    <label for="" translate>Additional KM</label>
+                    <label name="addkm" class="form-control rounded-0"
+                      translate><b>{{driverDetails?.km}}</b></label>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="" translate>Additional Hour</label>
+                    <label name="addhour" class="form-control rounded-0"
+                      translate><b>{{driverDetails?.hour}}</b></label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-md-6">
+                    <button (click)="vechicleDriver(driverStatusForm.value)" type="button" class="btn btn-success"
+                      translate>Update</button>&nbsp;
+                    <button (click)="clearForm()" type="button" class="btn btn-info" translate>Cancel</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="row" [hidden]="!isdisplay">
+            <div class="col-md-10">
+              <h3 translate>Driver Tracking</h3>
+              <button (click)="clearForm()" type="button" class="btn btn-info" translate>Cancel</button>
+              <div class="map">
+                <agm-map [latitude]="currentPos.lat" [longitude]="currentPos.lng" [zoom]="zoom"
+                  [disableDefaultUI]="false" [zoomControl]="false" (mapClick)="mapClicked($event)">
+                  <agm-marker-cluster>
+                    <agm-marker [latitude]="currentPos?.lat" [longitude]="currentPos?.lng"
+                      [iconUrl]="{url: currentPos?.imageUrl, scaledSize: {height: 35,width: 25},labelOrigin:{x:50,y:20}}">
+                      <agm-info-window [disableAutoPan]="false">
+                        <!-- Driver ID: <strong>{{currentPos?.id}}</strong><br>
+                        Driver Name: <strong>{{currentPos?.driverName}}</strong><br>
+                        LastLogin: <strong>{{currentPos?.TimeStamp}}</strong><br>
+                        LastLogin: <strong>{{currentPos?.android}}</strong> -->
+                        Driver ID: <strong></strong><br>
+                        Driver Name: <strong></strong><br>
+                        LastLogin: <strong></strong><br>
+                        LastLogin: <strong></strong>
+                      </agm-info-window>
+                    </agm-marker>
+                  </agm-marker-cluster>
+                  <agm-polyline strokeColor="red">
+                    <agm-polyline-point *ngFor="let point of points" [latitude]="point.lat" [longitude]="point.lng">
+                    </agm-polyline-point>
+                  </agm-polyline>
+                </agm-map>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div id="delete-user" class="modal fade custom-modal" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h4 class="modal-title" translate>Delete Supplier</h4>
+      </div>
+      <div class="modal-body mb-20 in-blk">
+        <h1 class="del-content text-center" translate>Are you sure you want to remove this driver?</h1>
+        <div class="row text-center mt-20">
+          <div class="col-md-12">
+            <button type="button" class="btn btn-default mr-15" title="" data-dismiss="modal" translate>No</button>
+            <button type="button" class="btn btn-info" title="" (click)="confirmation()" translate>Yes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

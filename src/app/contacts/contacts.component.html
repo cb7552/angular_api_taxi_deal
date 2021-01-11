@@ -1,0 +1,61 @@
+<alert></alert>
+<app-header></app-header>
+<div class="row1 pt-5">
+  <div class="col-md-4 mx-auto">
+    <div class="rounded-0">
+     <div class="contact_form">
+      <div class="card-body">
+       <!-- <div>
+          <img src="../../assets/img/logonewwhite.png" class="text-center" class="login_logo" />
+        </div> -->
+        <div class="form" [formGroup]="contactForm">
+          <div class="form-group">
+            <label class="control-label" translate>Name</label>
+            <input type="text" required id="name" class="form-control" formControlName="name"
+              [ngClass]="{ 'is-invalid': f.name.errors }">
+            <control-messages class="alert-align" [control]="contactForm.controls['name']"></control-messages>
+          </div>
+          <div class="form-group">
+            <label class="control-label" translate>Email</label>
+            <input type="text" required id="email" class="form-control" formControlName="email"
+              [ngClass]="{ 'is-invalid':  f.email.errors }">
+            <control-messages class="alert-align" [control]="contactForm.controls['email']"></control-messages>
+          </div>
+          <div class="form-group">
+            <label class="control-label" translate>PhoneNumber</label>
+           <!-- <input type="text" required id="phonenumber" class="form-control" formControlName="phonenumber"
+              minlength='10-12' [ngClass]="{ 'is-invalid':  f.phonenumber.errors }">
+            <control-messages class="alert-align" [control]="contactForm.controls['phonenumber']"></control-messages> -->
+            <international-phone-number id="phonenumber" type="text" class="form-control" formControlName="phonenumber"
+            placeholder="Enter phone number"  [defaultCountry]="'in'" [required]="true" name="phonenumber" [allowedCountries]="['in', 'ch']"  
+            [ngClass]="{ 'is-invalid':  f.phonenumber.errors }"></international-phone-number>
+            <control-messages class="alert-align" [control]="contactForm.controls['phonenumber']"></control-messages>
+         </div>
+          <div class="form-group">
+            <label class="control-label" translate>Job</label>
+            <input type="text" required id="job" class="form-control" formControlName="job"
+              [ngClass]="{ 'is-invalid': f.job.errors }">
+            <control-messages class="alert-align" [control]="contactForm.controls['job']"></control-messages>
+          </div>
+          <div class="form-group">
+            <label class="control-label" translate>Subject</label>
+            <input type="text" required id="subject" class="form-control" formControlName="subject"
+              [ngClass]="{ 'is-invalid': f.subject.errors }">
+            <control-messages class="alert-align" [control]="contactForm.controls['subject']"></control-messages>
+          </div>
+            <div class="form-group">
+            <label class="control-label" translate>Message</label>
+            <textarea type="text" required id="message" class="form-control" formControlName="message"
+              [ngClass]="{ 'is-invalid':  f.message.errors }"></textarea>
+            <control-messages class="alert-align" [control]="contactForm.controls['message']"></control-messages>
+          </div>
+          <div class="col-sm-12 form-btn text-center">
+            <button type="submit" class="btn btn-success" (click)="saveContactForm(contactForm.value)"
+              translate>Send</button>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

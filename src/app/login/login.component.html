@@ -1,0 +1,105 @@
+<alert></alert>
+<app-header></app-header>
+<div class="rowl pt-5">
+  <div class="col-md-4 mx-auto">
+    <div class="rounded-0">
+      <h1>{{ showLoginPage }}</h1>
+      <div class="login_form" *ngIf="showLoginPage">
+        <div class="card-body">
+         <!-- <div>
+            <img src="/assets/img/logonewwhite.png" class="text-center" class="login_logo" />
+          </div> -->
+          <div class="form" [formGroup]="signInForm">
+            <div class="form-group">
+              <i class="fa fa-envelope"></i>
+              <input type="text" required class="form-control" formControlName="email"
+                placeholder="{{ 'Email or PhoneNumber' | translate }}" [ngClass]="{ 'is-invalid': f.email.errors }" />
+              <control-messages class="alert-align" [control]="signInForm.controls['email']"
+                [controlMessage]="'Email or phonenumber is invalid format'"></control-messages>
+            </div>
+            <div class="form-group">
+              <i class="fa fa-lock"></i>
+              <input required id="password" formControlName="password" name="password" passwordToggle type="password" class="form-control"
+                placeholder="{{ 'Password' | translate }}" [ngClass]="{ 'is-invalid': f.password.errors }" />
+              <control-messages class="alert-align" [control]="signInForm.controls['password']"
+                [controlMessage]="'Password is required'"></control-messages>
+            </div>
+            <div class="form-group">
+              <label for="role" translate>Your Role:</label>
+              <select name="role" id="role" class="form-control" formControlName="role"
+                (change)="selectRole($event.target.value)" [ngClass]="{ 'is-invalid': f.role.errors }">
+                <option value="" disabled translate>Select a role</option>
+                <option value="ROLE_DRIVER" translate>Driver</option>
+                <option value="ROLE_USER" translate>User</option>
+                <option value="ROLE_ADMIN" translate>Admin</option>
+                <option value="ROLE_SUPPLIER" translate>Supplier</option>
+              </select>
+              <control-messages class="alert-align" [control]="signInForm.controls['role']"
+                [controlMessage]="'Role is required'"></control-messages>
+            </div>
+            <!--<div class="form-group" *ngIf="isEnableWebSite">-->
+            <!-- <div class="form-group" *ngIf="hide">
+              <i class="fa fa-globe"></i>
+              <input required id="website" formControlName="website" type="type" class="form-control"
+                placeholder="{{ 'website' | translate }}" [ngClass]="{ 'is-invalid': f.website.errors }" />
+              <control-messages class="alert-align" [control]="signInForm.controls['website']"
+                [controlMessage]="'Website is required'"></control-messages>
+            </div> -->
+
+            <div class="shadow-none mb-5 bg-light rounded">
+              <button type="submit" class="btn btn-success width100  rounded-0" (click)="userLogin()"
+                translate>Login</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="text-center">
+              <p translate class="account_yet" translate>Don't have account yet?</p>
+              <a class="text-center" routerLink="/registration" translate> Sign Up</a>
+            </div>
+            <p class="text-center">
+              <a (click)="switchPage('FORGOT')" style="cursor: pointer;">
+                <u translate>Forgot Password</u>
+              </a>
+            </p>
+             <!-- <p>{{ outputMessage }}</p> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="login_form" *ngIf="!showLoginPage">
+        <div class="card-body">
+          <div class="login_logo">
+            <img src="/assets/img/logonewwhite.png" width="330" class="text-center" alt="taxideal logo" />
+          </div>
+          <form class="form" [formGroup]="forgotForm" (ngSubmit)="gotToForgot()">
+            <div class="form-group">
+              <i class="fa fa-envelope"></i>
+              <input type="text" required class="form-control" formControlName="email"
+                placeholder="{{ 'Email or PhoneNumber' | translate }}" [ngClass]="{ 'is-invalid': g.email.errors }" />
+              <div *ngIf="g.email.errors" class="invalid-feedback">
+                <div *ngIf="g.email.errors.required">Email is required</div>
+                <div *ngIf="g.email.errors.pattern">aa@gmail.com</div>
+              </div>
+            </div>
+
+            <div class="shadow-none mb-5 bg-light rounded">
+              <button type="submit" class="btn btn-success width100  rounded-0" translate>Submit</button>
+            </div>
+          </form>
+
+          <div class="form-group">
+            <p class="text-center">
+              <a (click)="switchPage('SIGNIN')" style="cursor: pointer;" translate>Sign In</a>
+            </p>
+
+             <!-- <p translate>{{ outputMessage }}</p> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>
+

@@ -1,0 +1,502 @@
+<!-- <div class="content-wrapper">
+  <div class="container-fluid">
+    <div class="rowl pt-5">
+      <div class="col-md-5 mx-auto">
+        <div class="card ">
+          <div class="card-body ">
+            <form class="form" [formGroup]="registerDriverForm">
+              <div class="col-sm-12 padd0">
+
+                <div class="row">
+                  <div class="form-group col-sm-6">
+                    <label class="control-label" translate>FirstName</label>
+                    <input id="firstName" type="text" class="form-control" formControlName="firstName"
+                      [ngClass]="{'is-invalid': f.firstName.errors }">
+                    <control-messages class="alert-align" [control]="registerDriverForm.controls['firstName']"
+                      [controlMessage]="'First Name is required'"></control-messages>
+                  </div>
+                  <div class="form-group col-sm-6">
+                    <label class="control-label" translate>LastName</label>
+                    <input id="lastName" type="text" class="form-control" formControlName="lastName"
+                      [ngClass]="{'is-invalid': f.lastName.errors }">
+                    <control-messages class="alert-align" [control]="registerDriverForm.controls['lastName']"
+                      [controlMessage]="'Last Name is required'"></control-messages>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12 padd0 ">
+                <div class="form-group">
+                  <label class="control-label" translate>Email</label>
+                  <input id="email" type="email" class="form-control" formControlName="email"
+                    [ngClass]="{ 'is-invalid': f.email.errors }">
+                  <control-messages class="alert-align" [control]="registerDriverForm.controls['email']"
+                    [controlMessage]="'Email Format Valid and Required'"></control-messages>
+
+                </div>
+                <div class="form-group">
+                  <label class="control-label" translate>Password</label>
+                  <input id="password" type="password" class="form-control" formControlName="password" minlength="6"
+                    [ngClass]="{ 'is-invalid': f.password.errors }" name="password" ngModel passwordToggle>
+                  <control-messages class="alert-align" [control]="registerDriverForm.controls['password']"
+                    [controlMessage]="'Password should contain 6 characters at least and required'"></control-messages>
+                </div>
+              </div>
+              <div class="col-sm-12 padd0">
+                <div class="form-group">
+                  <label class="control-label" translate>Phone Number</label>
+
+                  <international-phone-number id="phoneNumber" type="text" class="form-control"
+                    formControlName="phoneNumber" placeholder="Enter phone number" [defaultCountry]="'in'"
+                    [required]="true" name="phoneNumber" [allowedCountries]="['in', 'ch']"
+                    [ngClass]="{ 'is-invalid': f.phoneNumber.errors }">
+                  </international-phone-number>
+
+                  <control-messages class="alert-align" [control]="registerDriverForm.controls['phoneNumber']"
+                    [controlMessage]="'Phone Number is required'"></control-messages>
+                </div>
+
+                <div class="form-group ">
+                  <label class="control-label" translate>License Number</label>
+                  <input id="licenseNumber" type="text" class="form-control" formControlName="licenseNumber"
+                    [ngClass]="{'is-invalid': f.licenseNumber.errors }">
+                  <control-messages class="alert-align" [control]="registerDriverForm.controls['licenseNumber']"
+                    [controlMessage]="'License Number is required'"></control-messages>
+                </div>
+
+                <div class="form-group">
+                  <label for="address" class="control-label" translate>Address</label>
+                  <input id="address" required type="text" name="address" class="form-control" autocorrect="off"
+                    formControlName="address" [ngClass]="{'is-invalid': f.address.errors }" autocapitalized="off"
+                    spellcheck="off" #search placeholder="" (input)="addressValue=$event.target.value" />
+                  <control-messages class="alert-align" [control]="registerDriverForm.controls['address']"
+                    [controlMessage]="'Address is required'"></control-messages>
+                </div>
+                <div class="row">
+                  <div class="form-group col-sm-6 ">
+                    <label for="carType" class="control-label" translate>CarType</label>
+                    <select id="carType" required class="form-control" name="carType" formControlName="carType"
+                      [ngClass]="{'is-invalid':f.carType.errors }">
+                      <option value="" disabled translate>Select a CarType</option>
+                      <option vlaue="item?.code" *ngFor="let item of careTypeData">
+                        {{item?.label}}
+                      </option>
+                    </select>
+                    <control-messages class="alert-align" [control]="registerDriverForm.controls['carType']"
+                      [controlMessage]="'CarType is required'"></control-messages>
+                  </div>
+                  <div class="form-group col-sm-6">
+                    <label for="category" class="control-label" translate>Category</label>
+                    <select id="category" required class="form-control" name="category" formControlName="category"
+                      [ngClass]="{'is-invalid':f.category.errors }" (change)="selectCategory($event.target.value)">
+                      <option value="" disabled translate>Select a Category</option>
+                      <option value="TAXI" translate>Taxi</option>
+                      <option value="RENT" translate>Car Rental</option>
+                      <option value="OUTSTATION" translate>OutStation</option>
+                    </select>
+                    <control-messages class="alert-align" [control]="registerDriverForm.controls['category']"
+                      [controlMessage]="'category is required'"></control-messages>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-sm-6">
+                    <label class="control-label" translate>Taxi Number</label>
+                    <input id="taxiNumber" type="text" class="form-control" formControlName="taxiNumber"
+                      [ngClass]="{'is-invalid':f.taxiNumber.errors }">
+                    <control-messages class="alert-align" [control]="registerDriverForm.controls['taxiNumber']"
+                      [controlMessage]="'Taxi Number is required'"></control-messages>
+                  </div>
+                  <div class="form-group col-sm-6">
+                    <label class="control-label" translate>Seats</label>
+
+                    <select id="seats" required class="form-control" name="seats" formControlName="seats"
+                      [ngClass]="{'is-invalid':f.seats.errors }" (change)="selectSeat($event.target.value)">
+                      <option value="" disabled translate>Select a Seat</option>
+                      <option value="1" translate>1</option>
+                      <option value="2" translate>2</option>
+                      <option value="3" translate>3</option>
+                      <option value="4" translate>4</option>
+                      <option value="5" translate>5</option>
+                      <option value="6" translate>6</option>
+                      <option value="7" translate>7</option>
+                      <option value="8" translate>8</option>
+                      <option value="9" translate>9</option>
+                      <option value="10" translate>10</option>
+                    </select>
+                    <control-messages class="alert-align" [control]="registerDriverForm.controls['seats']"
+                      [controlMessage]="'Seat is required'"></control-messages>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-sm-6">
+                    <label class="control-label" translate>Vehicle Year</label>
+
+                    <select id="vehicleYear" class="form-control" name="vehicleYear" formControlName="vehicleYear"
+                      [ngClass]="{'is-invalid':f.vehicleYear.errors }">
+                      <option value="" disabled translate>Select a Year</option>
+                      <option value="1999">1999</option>
+                      <option value="2000">2000</option>
+                      <option value="2001">2001</option>
+                      <option value="2002">2002</option>
+                      <option value="2003">2003</option>
+                      <option value="2004">2004</option>
+                      <option value="2005">2005</option>
+                      <option value="2006">2006</option>
+                      <option value="2007">2007</option>
+                      <option value="2008">2008</option>
+                      <option value="2009">2009</option>
+                      <option value="2010">2010</option>
+                      <option value="2011">2011</option>
+                      <option value="2012">2012</option>
+                      <option value="2013">2013</option>
+                      <option value="2014">2014</option>
+                      <option value="2015">2015</option>
+                      <option value="2016">2016</option>
+                      <option value="2017">2017</option>
+                      <option value="2018">2018</option>
+                      <option value="2019">2019</option>
+                      <option value="2020">2020</option>
+                      <option value="2021">2021</option>
+                    </select>
+                    <control-messages class="alert-align" [control]="registerDriverForm.controls['vehicleYear']"
+                      [controlMessage]="'Vehicle Year is required'"></control-messages>
+                  </div>
+                  <div class="form-group col-sm-6">
+                    <label class="control-label" translate>Vehicle Brand</label>
+
+                    <select id="vehicleBrand" class="form-control" name="vehicleBrand" formControlName="vehicleBrand"
+                      [ngClass]="{'is-invalid':f.vehicleBrand.errors }"
+                      (change)="selectVehicleBrand($event.target.value)">
+                      <option value="" disabled translate>Select a Brand</option>
+                      <option value="Hyundai">Hyundai</option>
+                      <option value="Tata">Tata</option>
+                      <option value="Skoda">Skoda</option>
+                      <option value="Toyota">Toyota</option>
+                      <option value="Renault">Renault</option>
+                      <option value="Datsun">Datsun</option>
+                      <option value="Maruti Suzuki">Maruti Suzuki</option>
+                      <option value="Fiat">Fiat</option>
+                      <option value="Mahindra">Mahindra</option>
+                      <option value="Honda">Honda</option>
+                      <option value="Ford">Ford</option>
+                      <option value="Volkswagen">Volkswagen</option>
+                      <option value="Nissan">Nissan</option>
+                      <option value="Auto">Auto</option>
+                      <option value="Chevrolet">Chevrolet</option>
+                    </select>
+
+                    <control-messages class="alert-align" [control]="registerDriverForm.controls['vehicleBrand']"
+                      [controlMessage]="'Vehicle Brand is required'"></control-messages>
+                  </div>
+                </div>
+                <div class="row" *ngIf="isEnable">
+                  <div class="form-group col-sm-6">
+                    <label class="control-label" translate>Base Price</label>
+                    <input id="basePrice" type="number" class="form-control" formControlName="basePrice"
+                      [ngClass]="{'is-invalid': f.basePrice.errors }">
+                    <control-messages class="alert-align" [control]="registerDriverForm.controls['basePrice']"
+                      [controlMessage]="'Base Price is required'"></control-messages>
+                  </div>
+                  <div class="form-group col-sm-6">
+                    <label class="control-label" translate>Price</label>
+                    <input id="price" type="number" class="form-control" formControlName="price"
+                      [ngClass]="{'is-invalid': f.price.errors }">
+                    <control-messages class="alert-align" [control]="registerDriverForm.controls['price']"
+                      [controlMessage]="'Price is required'"></control-messages>
+                  </div>
+                </div>
+                <div class="row" *ngIf="isEnable">
+                  <div class="form-group col-sm-6">
+                    <label class="control-label" translate>Peak Price</label>
+                    <input id="peakPrice" type="number" class="form-control" formControlName="peakPrice"
+                      [ngClass]="{'is-invalid': f.peakPrice.errors }">
+                    <control-messages class="alert-align" [control]="registerDriverForm.controls['peakPrice']"
+                      [controlMessage]="'Peak Price is required'"></control-messages>
+                  </div>
+
+                </div>
+              </div>
+              <div class="col-sm-12 form-btn text-center">
+                <button [disabled]="loading" class="btn btn-success" (click)="addUpdateDriver()"
+                  translate>Save</button>&nbsp;
+                <button (click)="cancel()" type="button" class="btn btn-info" translate>Cancel</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+<div class="content-wrapper">
+  <div class="container-fluid">
+    <div class="new-driver">
+      <div>
+        <label class="add-title">Add New Driver</label>
+      </div>
+
+      <div class="accordion" id="accordionExample" [formGroup]="registerDriverForm">
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+              <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+                aria-expanded="true" aria-controls="collapseOne">
+                Basic Info
+              </button>
+            </h2>
+          </div>
+
+          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+              <div class="col-md-12 content">
+                <div class="row">
+                  <div class="form-group col-md-6">
+                    <label translate>First Name</label>
+                    <input formControlName="firstName" placeholder="Enter First Name" name="fstname"
+                      class="form-control" [ngClass]="{'is-invalid': f.firstName.errors }">
+                    <control-messages class="alert-align" [control]="registerDriverForm.controls['firstName']"
+                      [controlMessage]="'First Name is required'"></control-messages>
+                  </div>
+
+                  <div class="form-group col-md-6">
+                    <label translate>Last Name</label>
+                    <input formControlName="lastName" placeholder="Enter Last Name" name="lastname" class="form-control"
+                      [ngClass]="{'is-invalid': f.lastName.errors }">
+                    <control-messages class="alert-align" [control]="registerDriverForm.controls['lastName']"
+                      [controlMessage]="'Last Name is required'"></control-messages>
+                  </div>
+
+                  <div class="form-group col-md-6">
+                    <label translate>Email</label>
+                    <input formControlName="email" placeholder="Enter Email" name="email" class="form-control"
+                      [ngClass]="{ 'is-invalid': f.email.errors }">
+                    <control-messages class="alert-align" [control]="registerDriverForm.controls['email']"
+                      [controlMessage]="'Email Format Valid and Required'"></control-messages>
+                  </div>
+
+                  <div class="form-group col-md-6">
+                    <label translate>Password</label>
+                    <input id="password" type="password" class="form-control" placeholder="Enter Password"
+                      formControlName="password" minlength="6" [ngClass]="{ 'is-invalid': f.password.errors }"
+                      name="password" ngModel passwordToggle>
+                    <control-messages class="alert-align" [control]="registerDriverForm.controls['password']"
+                      [controlMessage]="'Password should contain 6 characters at least and required'">
+                    </control-messages>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label translate>Phone Number</label>
+                    <international-phone-number id="phoneNumber" type="text" class="form-control"
+                      formControlName="phoneNumber" placeholder="Enter phone number" [defaultCountry]="'in'"
+                      [required]="true" name="phoneNumber" [allowedCountries]="['in', 'ch', 'gb' ]"
+                      [ngClass]="{ 'is-invalid': f.phoneNumber.errors }">
+                    </international-phone-number>
+                    <control-messages class="alert-align" [control]="registerDriverForm.controls['phoneNumber']"
+                      [controlMessage]="'Phone Number is required'"></control-messages>
+                  </div>
+
+                  <div class="form-group col-md-6">
+                    <label translate>License Number</label>
+                    <input id="licenseNumber" type="text" class="form-control" placeholder="Enter License Number"
+                      formControlName="licenseNumber" [ngClass]="{'is-invalid': f.licenseNumber.errors }">
+                    <control-messages class="alert-align" [control]="registerDriverForm.controls['licenseNumber']"
+                      [controlMessage]="'License Number is required'"></control-messages>
+                  </div>
+                  <div class="form-group col-md-12">
+                    <label translate>Address</label>
+                    <input id="address" required type="text" name="address" placeholder="Enter Address"
+                      class="form-control" autocorrect="off" formControlName="address"
+                      [ngClass]="{'is-invalid': f.address.errors }" autocapitalized="off" spellcheck="off" #search
+                      placeholder="" (input)="searchAddress=$event.target.value" />
+                    <control-messages class="alert-align" [control]="registerDriverForm.controls['address']"
+                      [controlMessage]="'Address is required'"></control-messages>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingTwo">
+            <h2 class="mb-0">
+              <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseTwo"
+                aria-expanded="false" aria-controls="collapseTwo">
+                Car details
+                <!-- <span><img src="assets/images/taxideals-logo.png" alt="Logo"></span> -->
+              </button>
+            </h2>
+          </div>
+          <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionExample">
+            <div class="card-body">
+              <div class="col-md-12">
+                <div class="row">
+                  <div class="form-group col-md-6">
+                    <label translate>Car Type</label>
+                    <select id="carType" required class="form-control" name="carType" placeholder="Enter Car Type"
+                       formControlName="carType" >
+                      <option value="" disabled translate>Select a CarType</option>
+                      <option vlaue="item?.code" [ngValue]="item?.code" *ngFor="let item of careTypeData">
+                        {{item?.name}}
+                      </option>
+                    </select>
+                    <control-messages class="alert-align" [control]="registerDriverForm.controls['carType']"
+                      [controlMessage]="'CarType is required'"></control-messages>
+                  </div>
+
+                  <div class="form-group col-md-6">
+                    <label translate>Category</label>
+                    <select id="category" required class="form-control" name="category" placeholder="Enter Category"
+                      formControlName="category" [ngClass]="{'is-invalid':f.category.errors }">
+                      <!-- (change)="selectCategory($event.target.value)"> -->
+                      <option value="" disabled translate>Select a Category</option>
+                      <option value="TAXI" translate>Taxi</option>
+                      <option value="RENT" translate>Car Rental</option>
+                      <option value="OUTSTATION" translate>OutStation</option>
+                    </select>
+                    <control-messages class="alert-align" [control]="registerDriverForm.controls['category']"
+                      [controlMessage]="'category is required'"></control-messages>
+                  </div>
+
+                  <div class="form-group col-md-6">
+                    <label translate>Taxi Number</label>
+                    <input id="taxiNumber" type="text" class="form-control" placeholder="Enter Taxi Number"
+                      formControlName="taxiNumber" [ngClass]="{'is-invalid':f.taxiNumber.errors }">
+                    <control-messages class="alert-align" [control]="registerDriverForm.controls['taxiNumber']"
+                      [controlMessage]="'Taxi Number is required'"></control-messages>
+                  </div>
+
+                  <div class="form-group col-md-6">
+                    <label translate>Seats</label>
+                    <select id="seats" required class="form-control" name="seats" formControlName="seats"
+                      [ngClass]="{'is-invalid':f.seats.errors }" (change)="selectSeat($event.target.value)">
+                      <option value="" disabled translate>Select a Seat</option>
+                      <option value="1" translate>1</option>
+                      <option value="2" translate>2</option>
+                      <option value="3" translate>3</option>
+                      <option value="4" translate>4</option>
+                      <option value="5" translate>5</option>
+                      <option value="6" translate>6</option>
+                      <option value="7" translate>7</option>
+                      <option value="8" translate>8</option>
+                      <option value="9" translate>9</option>
+                      <option value="10" translate>10</option>
+                      <option value="11" translate>11</option>
+                      <option value="12" translate>12</option>
+                      <option value="13" translate>13</option>
+                      <option value="14" translate>14</option>
+                      <option value="15" translate>15</option>
+                    </select>
+                    <control-messages class="alert-align" [control]="registerDriverForm.controls['seats']"
+                      [controlMessage]="'Seat is required'"></control-messages>
+                  </div>
+
+                  <div class="form-group col-md-6">
+                    <label translate>Vehicle Year</label>
+                    <select id="vehicleYear" class="form-control" name="vehicleYear" formControlName="vehicleYear"
+                      [ngClass]="{'is-invalid':f.vehicleYear.errors }">
+                      <option value="" disabled translate>Select a Year</option>
+                      <option value="1999">1999</option>
+                      <option value="2000">2000</option>
+                      <option value="2001">2001</option>
+                      <option value="2002">2002</option>
+                      <option value="2003">2003</option>
+                      <option value="2004">2004</option>
+                      <option value="2005">2005</option>
+                      <option value="2006">2006</option>
+                      <option value="2007">2007</option>
+                      <option value="2008">2008</option>
+                      <option value="2009">2009</option>
+                      <option value="2010">2010</option>
+                      <option value="2011">2011</option>
+                      <option value="2012">2012</option>
+                      <option value="2013">2013</option>
+                      <option value="2014">2014</option>
+                      <option value="2015">2015</option>
+                      <option value="2016">2016</option>
+                      <option value="2017">2017</option>
+                      <option value="2018">2018</option>
+                      <option value="2019">2019</option>
+                      <option value="2020">2020</option>
+                      <option value="2021">2021</option>
+                    </select>
+                    <control-messages class="alert-align" [control]="registerDriverForm.controls['vehicleYear']"
+                      [controlMessage]="'Vehicle Year is required'"></control-messages>
+                  </div>
+
+                  <div class="form-group col-md-6">
+                    <label translate>Vehicle Brand</label>
+                    <select id="vehicleBrand" class="form-control" name="vehicleBrand" formControlName="vehicleBrand"
+                      [ngClass]="{'is-invalid':f.vehicleBrand.errors }"
+                      (change)="selectVehicleBrand($event.target.value)">
+                      <option value="" disabled translate>Select a Brand</option>
+                      <option value="Hyundai">Hyundai</option>
+                      <option value="Tata">Tata</option>
+                      <option value="Skoda">Skoda</option>
+                      <option value="Toyota">Toyota</option>
+                      <option value="Renault">Renault</option>
+                      <option value="Datsun">Datsun</option>
+                      <option value="Maruti Suzuki">Maruti Suzuki</option>
+                      <option value="Fiat">Fiat</option>
+                      <option value="Mahindra">Mahindra</option>
+                      <option value="Honda">Honda</option>
+                      <option value="Ford">Ford</option>
+                      <option value="Volkswagen">Volkswagen</option>
+                      <option value="Nissan">Nissan</option>
+                      <option value="Auto">Auto</option>
+                      <option value="Chevrolet">Chevrolet</option>
+                    </select>
+
+                    <control-messages class="alert-align" [control]="registerDriverForm.controls['vehicleBrand']"
+                      [controlMessage]="'Vehicle Brand is required'"></control-messages>
+                  </div>
+                  <!-- <div class="form-group col-md-6" *ngIf="isEnable">
+                    <label translate>Base Price</label>
+                    <input id="basePrice" type="number" class="form-control" placeholder="Enter Base Price"
+                      formControlName="basePrice" [ngClass]="{'is-invalid': f.basePrice.errors }">
+                    <control-messages class="alert-align" [control]="registerDriverForm.controls['basePrice']"
+                      [controlMessage]="'Base Price is required'"></control-messages>
+                  </div>
+
+                  <div class="form-group col-md-6" *ngIf="isEnable">
+                    <label translate>Price</label>
+                    <input id="price" type="number" class="form-control" placeholder="Enter Price"
+                      formControlName="price" [ngClass]="{'is-invalid': f.price.errors }">
+                    <control-messages class="alert-align" [control]="registerDriverForm.controls['price']"
+                      [controlMessage]="'Price is required'"></control-messages>
+                  </div>
+
+                  <div class="form-group col-md-6" *ngIf="isEnable">
+                    <label translate>Peak Price</label>
+                    <input id="peakPrice" type="number" class="form-control" placeholder="Enter Peak Price"
+              
+                    formControlName="peakPrice" [ngClass]="{'is-invalid': f.peakPrice.errors }">
+                    <control-messages class="alert-align" [control]="registerDriverForm.controls['peakPrice']"
+                      [controlMessage]="'Peak Price is required'"></control-messages>
+                  </div> -->
+
+                  <!-- <div class="form-group col-md-6">
+                    <label>Website</label>
+                    <input formControlName="website" placeholder="Enter Website" name="website" class="form-control">
+                  </div> -->
+
+                  <!-- <div class="form-group col-md-6">
+                    <label>Upload Image</label>
+                    <input type="file" formControlName="image" placeholder="Upload Image" name="image" class="form-control">  
+                    <div>
+                      <label class="file">
+                        <input type="file" id="file" aria-label="File browser example">
+                        <span class="file-custom"></span>
+                      </label>
+                    </div>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="button-div">
+        <button class="btn btn-primary" [disabled]="isEnable" (click)="addUpdateDriver()" translate>Submit</button>
+        <button class="btn btn-secondary" (click)="cancel()" type="button" translate>Close</button>
+      </div>
+    </div>
+  </div>
+</div>

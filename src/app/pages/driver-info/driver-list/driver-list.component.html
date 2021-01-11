@@ -1,0 +1,50 @@
+<div class="content-wrapper">
+
+  <div class="container-fluid">
+
+    <div class="container">
+      <div class="rowl">
+        <nav class="navbar" style="background-color:white">
+          <input class="form-control" font-color="#000" placeholder="Filter Values..." type="text" name="search"
+            [(ngModel)]="filterText">
+        </nav>
+        <table class="table table table-bordered table-hover">
+
+          <tr>
+            <th>#</th>
+            <th (click)="sort('name')" translate>Name
+              <span class="glyphicon sort-icon" *ngIf="key =='name'"
+                [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+            </th>
+            <th (click)="sort('driverStatus')" translate>driverStatus
+              <span class="glyphicon sort-icon" *ngIf="key =='driverStatus'"
+                [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+            </th>
+            <th (click)="sort('phoneNumber')" translate>phoneNumber
+              <span class="glyphicon sort-icon" *ngIf="key =='phoneNumber'"
+                [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+            </th>
+            <th (click)="sort('cartype')" translate>cartype
+              <span class="glyphicon sort-icon" *ngIf="key =='cartype'"
+                [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+            </th>
+          </tr>
+          <tr *ngFor="let taxi of (taxistatus | customfilter : {
+            name: filterText,
+            phoneNumber: filterText }: false);let i=index">
+            <td>{{i+1}}</td>
+            <td>{{taxi.name}}</td>
+            <td>{{taxi.driverStatus}}</td>
+            <td>{{taxi.phoneNumber}}</td>
+            <td>{{taxi.cartype}}</td>
+          </tr>
+         
+          <pagination-controls (pageChange)="pageNUmber = $event"></pagination-controls>
+        </table>
+      </div>
+      <button (click)="routeTo()" type="button" class="btn btn-info" translate>Dashboard</button>
+    
+    </div>
+
+  </div>
+</div>

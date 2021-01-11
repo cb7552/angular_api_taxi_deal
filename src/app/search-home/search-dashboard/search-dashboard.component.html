@@ -1,0 +1,608 @@
+<section class="st_banner">
+  <!-- <div id="st_carousel_slider" class="carousel slide" data-interval="200" data-ride="carousel">
+    <ol class="carousel-indicators">
+  <li data-target="#st_carousel_slider" data-slide-to="0" class="active"></li>
+      <li data-target="#st_carousel_slider" data-slide-to="1"></li>
+      <li data-target="#st_carousel_slider" data-slide-to="2"></li>
+      
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img class="d-block w-100" src="assets/img/banner/banner1.jpg" alt="First slide">
+      </div>
+      <div class="carousel-item">
+        <img class="d-block w-100" src="assets/img/banner/banner2.jpg" alt="Second slide">
+    </div>
+     <div class="carousel-item">
+        <img class="d-block w-100" src="assets/img/banner/banner3.jpg" alt="Third slide">
+      </div>
+      <div class="carousel-item">
+        <img class="d-block w-100" src="assets/img/banner/banner4.jpg" alt="Forth slide">
+      </div>
+    </div>
+  </div> -->
+  <carousel class="slide slider">
+    <slide>
+      <img class="d-block w-100" src="assets/img/banner/banner-1.jpg" alt="taxideal first slide">
+    </slide>
+    <!-- <slide>
+      <img class="d-block w-100" src="assets/img/banner/banner-2.png" alt="second slide">
+    </slide> 
+    <slide>
+      <img class="d-block w-100" src="assets/img/banner/banner3.jpg" alt="third slide">
+    </slide>
+    <slide>
+      <img class="d-block w-100" src="assets/img/banner/banner4.jpg" alt="third slide">
+    </slide> -->
+  </carousel>
+
+  <div class="search_box h-100">
+    <div class="container h-100">
+      <div class="row h-100  align-items-center justify-content-end">
+        <!-- <div class="col-xl-7 seach_form_list px-3 pb-4">
+           <div class="row" *ngIf="isEnable">
+            <div class="col-lg-4 p-3 " *ngFor="let exp of finalSearchResult;let i=index" (click)="selectCar(exp)">
+              <div class="search_form_list_box py-2 col-12">
+                <div class="text-center d-block" *ngIf="!exp.imageInfo">
+                  <img width="80px" src="../../assets/img/minilogo.png">
+                </div>
+                <div class="d-block">
+                  <h5 class="my-2" translate>Name</h5>
+                  <h6 class="my-2">{{exp?.name}}</h6>
+                </div>
+                <div class="row m-0 justify-content-between">
+                  <div class="col-6 px-0">
+                    <h5 class="my-2" translate>Car type</h5>
+                    <h6 class="my-2">{{exp.cartype}}</h6>
+                  </div>
+                  <div class="col-6  px-0 text-right" *ngIf="exp.imageInfo && exp.imageInfo.imageUrl">
+                    <img width="60px" [src]="exp?.imageInfo?.imageUrl">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+        <div class="col-sm-7 col-md-6 col-xl-5 col-lg-5 seach_form px-3 pb-4">
+          <form [formGroup]="searchForm">
+            <div class="form-row ">
+              <div class="col-md-12 px-3 search_box_menu text-center">
+                <div class="row">
+                  <ul class="nav nav-tabs">
+                    <li class="col-md-4 col-sm-4 s_b_m nav-item " (click)="categoryTaxi()"><a value="TAXI"
+                        class="nav-link active" data-toggle="pill" href="#taxi" #categoryTAXI>One way</a></li>
+                    <li class="col-md-4 col-sm-4 s_b_m nav-item" (click)="categoryOut()"><a value="OUTSTATION"
+                        class="nav-link" data-toggle="pill" href="#tourist" #categoryOUT>Round Trip</a>
+                    </li>
+                    <li class="col-md-4 col-sm-4 s_b_m nav-item" (click)="categoryRent()"><a value="RENT"
+                        class="nav-link" data-toggle="pill" href="#rent" #categoryRENT>RENTALS</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="tab-content">
+                <div class="tab-pane fade show active" id="taxi" role="tabpanel" aria-labelledby="taxi-tab">
+                  <div class="form-group col-md-12">
+                    <label class="mb-0" for="inputEmail4" translate>Pickup Location</label>
+                    <input type="text" placeholder="{{'Source Address' | translate}}" autocorrect="off"
+                      autocapitalize="off" spellcheck="off" class="form-control ds-input" role="combobox"
+                      aria-expanded="true" aria-owns="algolia-autocomplete-listbox-0" formControlName="source"
+                      id="source" name="source" #sourcesearch style="position: relative; vertical-align: top;" />
+                    <img src="assets/img/custom/locate.png" draggable="false" alt="taxideal locate-icon"
+                      class="locate-icon">
+                  </div>
+                  <div class="form-group col-md-12">
+                    <label class="mb-0" for="inputEmail4" translate>Drop Location</label>
+                    <input type="text" placeholder="{{'Destination Address' | translate}}" autocorrect="off"
+                      autocapitalize="off" spellcheck="off" class="form-control" formControlName="destination"
+                      id="destination" name="destination" #destinationsearch />
+                    <img src="assets/img/custom/locate.png" draggable="false" alt="taxideal locate-icon"
+                      class="locate-icon">
+                  </div>
+                  <div class="form-group row">
+                    <div class="form-group col-md-6">
+                      <label for="inputState" translate>Cartypes</label>
+                      <select class="form-control" formControlName="cartype"
+                      id="cartype" name="cartype">
+                        <option value="" disabled translate>Select a cartype </option>
+                        <option vlaue="item?.code" [ngValue]="item?.code" *ngFor="let item of careTypeData">
+                          {{item?.name}}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="inputState" translate>Time</label>
+                      <ejs-datetimepicker id='datetimepicker' formControlName="dateTime" format='yyy.MM.dd HH:mm'
+                        placeholder='Select a date' [value]='dateValue'>
+                      </ejs-datetimepicker>
+                      <!-- <label for="inputState" translate>Time</label>
+                   s     <select class="form-control" formControlName="cartype" id="cartype" name="cartype">
+                          <option vlaue="item" >Immediate Booking </option>
+                          <option vlaue="item" >Schedule for Later </option>
+                        </select> -->
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="tourist" role="tabpanel" aria-labelledby="tourist-tab">
+                  <div class="form-group col-md-12">
+                    <label class="mb-0" for="inputEmail4" translate>Pickup Location</label>
+                    <input type="text" placeholder="{{'Source Address' | translate}}" autocorrect="off"
+                      autocapitalize="off" spellcheck="off" class="form-control ds-input" role="combobox"
+                      aria-expanded="true" aria-owns="algolia-autocomplete-listbox-0" formControlName="source"
+                      id="source" name="source" #SourceSearch style="position: relative; vertical-align: top;" />
+                    <img src="assets/img/custom/locate.png" draggable="false" alt="taxideal locate-icon"
+                      class="locate-icon">
+                  </div>
+                  <!-- <div class="form-group col-md-12">
+                        <label class="mb-0" for="inputEmail4" translate>Drop Location</label>
+                        <input type="text" placeholder="{{'Destination Address' | translate}}" autocorrect="off"
+                          autocapitalize="off" spellcheck="off" class="form-control" formControlName="destination"
+                          id="destination" name="destination" #destinationsearch />
+                        <img src="assets/img/custom/locate.png" draggable="false" alt="taxideal locate-icon" class="locate-icon">
+                      </div> -->
+                  <div class="form-group row">
+                    <div class="form-group col-md-6">
+                      <label for="inputState" translate>Cartypes</label>
+                      <select class="form-control" formControlName="cartype" id="cartype" name="cartype">
+                        <option value="" disabled translate>Select a cartype </option>
+                        <option vlaue="item?.code" [ngValue]="item?.code" *ngFor="let item of careTypeData">
+                          {{item?.name}}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="inputState" translate>Time</label>
+                      <ejs-datetimepicker id='datetimepicker' format='yyyy.MM.dd HH:mm' formControlName="dateTime"
+                        placeholder='Select a date' [value]='dateValue'>
+                      </ejs-datetimepicker>
+                      <!-- <select class="form-control" formControlName="cartype" id="cartype" name="cartype">
+                            <option vlaue="item" >Immediate Booking </option>
+                            <option vlaue="item" >Schedule for Later </option>
+                          </select> -->
+                    </div>
+                  </div>
+                  <div class="form-group col-md-12">
+                    <label class="name" translate>TRIP</label>
+                    <div class="row">
+                      <div class="radio col-6">
+                        <label><input type="radio" name="optradio" value="Single" checked translate>Local</label>
+                      </div>
+                      <div class="radio col-6">
+                        <label><input type="radio" name="optradio" value="Single" translate>Out Station</label>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <form class="formGroup">
+                        <label class="name" translate>TRIP</label>
+                        <div class="row">
+                          <div class="radio col-6">
+                            <label><input type="radio" name="optradio" checked translate>Single</label>
+                          </div>
+                            <div class="radio col-6">
+                            <label><input type="radio" name="optradio" translate>Rounded</label>
+                          </div>
+                        </div>
+                      </form> -->
+                </div>
+
+                <div class="tab-pane fade" id="rent" role="tabpanel" aria-labelledby="rent-tab">
+                  <div class="form-group col-md-12">
+                    <label class="mb-0" for="inputEmail4" translate>Pickup Location</label>
+                    <input type="text" placeholder="{{'Source Address' | translate}}" autocorrect="off"
+                      autocapitalize="off" spellcheck="off" class="form-control ds-input" role="combobox"
+                      aria-expanded="true" aria-owns="algolia-autocomplete-listbox-0" formControlName="source"
+                      id="source" name="source" #Sourcesearch style="position: relative; vertical-align: top;" />
+                    <img src="assets/img/custom/locate.png" draggable="false" alt="taxideal locate-icon"
+                      class="locate-icon">
+                  </div>
+                  <div class="form-group row">
+                    <div class="form-group col-md-6">
+                      <label for="inputState" translate>Cartypes</label>
+                      <select class="form-control" formControlName="cartype" id="cartype" name="cartype">
+                        <option value="" disabled translate>Select a cartype </option>
+                        <option vlaue="item?.code" [ngValue]="item?.code" *ngFor="let item of careTypeData">
+                          {{item?.name}}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="inputState" translate>Time</label>
+                      <ejs-datetimepicker id='datetimepicker' formControlName="dateTime" format='yyy.MM.dd HH:mm'
+                        placeholder='Select a date' [value]='dateValue'>
+                      </ejs-datetimepicker>
+                      <!-- <select class="form-control" formControlName="cartype" id="cartype" name="cartype">
+                          <option vlaue="item" >Immediate Booking </option>
+                          <option vlaue="item" >Schedule for Later </option>
+                        </select> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12"> <button type="submit" class="btn btn-primary search-result-btn"
+                (click)="getSearchResult()" translate>Search</button></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="sec_taxiideals py-5">
+  <h5 class="my-0 all_h5 text-center" translate>Welcome to Taxideals</h5>
+  <h4 class="my-2 text-center heder_desc" translate>Why Ride with Taxideals?</h4>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-6 taxiideals_box mb-3 mb-md-5">
+        <div class="row">
+          <div class="col-md-4 col-sm-4 img-container">
+            <img src="assets/img/td_box1.jpg" alt="taxideal icon">
+          </div>
+          <div class="col-md-8 col-sm-8 desc-container">
+            <h4 translate>Secure and safer Rides</h4>
+            <p class="m-0" translate>Verified drivers, an emergency alert button, and live ride tracking are some of the
+              features that we have in place to ensure you a safe travel experience.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 taxiideals_box mb-3 mb-md-5">
+        <div class="row">
+          <div class="col-md-4 col-sm-4 img-container">
+            <img src="assets/img/td_box3.jpg" alt="taxideal icon">
+          </div>
+          <div class="col-md-8 col-sm-8 desc-container">
+            <h4 translate>Cashless Rides</h4>
+            <p class="m-0" translate>Go cashless without the hassle of always having to carry cash everywhere you go.
+              Many options are available such as paytm, netbanking and using credit cards and debit cards. Have your own
+              taxi deals money too.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 taxiideals_box mb-3 mb-md-0">
+        <div class="row">
+          <div class="col-md-4 col-sm-4 img-container">
+            <img src="assets/img/td_box5.jpg" alt="taxideal icon">
+          </div>
+          <div class="col-md-8 col-sm-8 desc-container">
+            <h4 translate>Share And Express</h4>
+            <p class="m-0" translate>To travel with the lowest fares choose taxideals share.
+              For a faster travel experience we have Share Express on some fixed routes with zero deviations. Choose
+              your ride and zoom away!</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 taxiideals_box mb-3 mb-md-0">
+        <div class="row">
+          <div class="col-md-4 col-sm-4 img-container">
+            <img src="assets/img/td_box4.jpg" alt="taxideal icon">
+          </div>
+          <div class="col-md-8 col-sm-8 desc-container">
+            <h4 translate>Cabs for Every Pocket</h4>
+            <p class="m-0" translate>From Sedans and SUVs to Luxury cars for special occasions, we have cabs to suit
+              every pocket</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="sec_benefits bg_grey py-5">
+  <h5 class="my-0 all_h5 text-center" translate>Get More Benefits</h5>
+  <h4 class="my-3 text-center heder_desc col-md-6" translate>Taxideals now offers a product that could provide
+    exceptional
+    benefits to Taxi companies</h4>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-6 taxibenefits_box mb-3 mb-md-5">
+        <div class="row">
+          <div class="col-2 text-center "><span>1</span></div>
+          <div class="col-10 px-sm-0">
+            <h4 translate>One</h4>
+            <p translate>These breakpoints are mostly based on minimum viewport widths and allow us to scale up elements
+              as the
+              viewport changes. widths and allow us to scale up elements as the viewport changes.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 taxibenefits_box mb-3 mb-md-5">
+        <div class="row">
+          <div class="col-2 text-center "><span>2</span></div>
+          <div class="col-10 px-sm-0">
+            <h4 translate>Two</h4>
+            <p translate>These breakpoints are mostly based on minimum viewport widths and allow us to scale up elements
+              as the
+              viewport changes. widths and allow us to scale up elements as the viewport changes.</p>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="col-md-6 taxibenefits_box mb-3 mb-md-0">
+          <div class="row">
+            <div class="col-2 text-center "><span>3</span></div>
+            <div class="col-10 px-sm-0">
+              <h4>Three</h4>
+              <p>These breakpoints are mostly based on minimum viewport widths and allow us to scale up elements as the
+                viewport changes. widths and allow us to scale up elements as the viewport changes.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 taxibenefits_box mb-3 mb-md-0">
+          <div class="row">
+            <div class="col-2 text-center "><span>4</span></div>
+            <div class="col-10 px-sm-0">
+              <h4>Four</h4>
+              <p>These breakpoints are mostly based on minimum viewport widths and allow us to scale up elements as the
+                viewport changes. widths and allow us to scale up elements as the viewport changes.</p>
+            </div>
+          </div>
+        </div>-->
+    </div>
+  </div>
+</section>
+<section class="sec_texideal_offers py-5">
+  <h5 class="my-0 all_h5 text-center" translate>Taxideals</h5>
+  <h4 class="my-3 text-center heder_desc" translate>Offers For You</h4>
+  <div class="container mt-4" *ngIf="!isIndia">
+    <div class="row">
+      <div class=" col-md-6 col-lg-4 texideal_offers_box mb-3 md-md-0">
+        <div class="card">
+          <img class="card-img-top" src="assets/img/td_offerso.jpg" alt="taxideal Card image cap">
+          <div class="card-body mx-3 px-0">
+            <h5 class="card-title" translate>Tourist places</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+              content.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 mb-3 md-md-0">
+        <div class="card">
+          <img class="card-img-top" src="assets/img/td_offersd.jpg" alt="taxideal Card image cap">
+          <div class="card-body mx-3 px-0">
+            <h5 class="card-title" translate>Tourist place</h5>
+            <p class="card-text" translate>Sunrise lake boat reflection shore</p>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 hidden-md mb-3 md-md-0">
+        <div class="card">
+          <img class="card-img-top" src="assets/img/td_offersm.jpg" alt="taxideal Card image cap">
+          <div class="card-body  mx-3 px-0">
+            <h5 class="card-title" translate>Major Cities</h5>
+            <p class="card-text" translate>Travel to 5 major city roads at low cost from Coimbatore</p>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container mt-4" *ngIf="isIndia">
+    <div class="row">
+      <div class=" col-md-6 col-lg-4 texideal_offers_box mb-3 md-md-0">
+        <div class="card">
+          <img class="card-img-top" src="assets/img/td-1.jpg" alt="taxideal Card image cap">
+          <div class="card-body mx-3 px-0">
+            <h5 class="card-title" translate>Tourist places</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+              content.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 mb-3 md-md-0">
+        <div class="card">
+          <img class="card-img-top" src="assets/img/td.jpg" alt="taxideal Card image cap">
+          <div class="card-body mx-3 px-0">
+            <h5 class="card-title" translate>Tourist place</h5>
+            <p class="card-text" translate>Sunrise lake boat reflection shore</p>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 hidden-md mb-3 md-md-0">
+        <div class="card">
+          <img class="card-img-top" src="assets/img/td_offersm-1.jpg" alt="taxideal Card image cap">
+          <div class="card-body  mx-3 px-0">
+            <h5 class="card-title" translate>Major Cities</h5>
+            <p class="card-text" translate>Travel to 5 major city roads at low cost from Coimbatore</p>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+
+  </div>
+</section>
+<section class="sec_app bg_grey  py-5">
+  <h5 class="my-0 all_h5 text-center" translate>Download App</h5>
+  <h4 class="my-3 text-center heder_desc" translate>Book an Taxideals from the App</h4>
+  <div class="container mt-3 text-center">
+    <a class="nav-link" class="text-left" translate>User App</a>&nbsp;&nbsp; &nbsp;&nbsp;
+    <a class="nav-link" class="text-right" translate> Driver App</a>
+  </div>
+  <div class="container mt-3 text-center">
+    <a href="https://play.google.com/store/apps/details?id=com.taxi.deals.newuser"><img class="p-2"
+        src="assets/img/app1.png" alt="taxideal app" /></a>
+    <a href="https://apps.apple.com/in/app/taxi-deals/id1273152483"><img class="p-2" src="assets/img/app2.png"
+        alt="taxideal app" /></a>
+    <a href="https://play.google.com/store/apps/details?id=com.taxi.deal.calltaxi"><img class="p-2"
+        src="assets/img/app1.png" alt="taxideal app" /></a>
+    <a href="https://apps.apple.com/in/app/taxideals-driver/id1393649889"><img class="p-2" src="assets/img/app2.png"
+        alt="taxideal app" /></a>
+
+  </div>
+
+</section>
+<section class="sec_texideal_venders py-5">
+  <div class="container">
+    <div class="row">
+      <div class=" col-md-4 texideal_venders_box mb-3 md-md-0">
+        <div class="card">
+          <img class="card-img-top" src="assets/img/Image_hotel.jpg" alt="taxideal Card image cap">
+          <div class="card-body mx-3 pb-0 px-0">
+            <div class="td_venders_img"> <img src="assets/img/icon_items.png" alt="taxideal icon"></div>
+            <h5 class="card-title" translate>Hotel & Restaurants</h5>
+            <p class="card-text" translate>Some quick example text to build on the card title and make up the bulk of
+              the card's
+              content.</p>
+          </div>
+
+        </div>
+      </div>
+
+      <div class=" col-md-4 texideal_venders_box mb-3 md-md-0">
+        <div class="card">
+          <img class="card-img-top" src="assets/img/Image_car.jpg" alt="taxideal Card image cap">
+          <div class="card-body mx-3 pb-0 px-0">
+            <div class="td_venders_img"> <img src="assets/img/taxi_icon.png" alt="taxideal icon"></div>
+            <h5 class="card-title" translate>Taxi Operators</h5>
+            <p class="card-text" translate>Some quick example text to build on the card title and make up the bulk of
+              the card's
+              content.</p>
+          </div>
+
+        </div>
+      </div>
+
+      <div class=" col-md-4 texideal_venders_box mb-3 md-md-0">
+        <div class="card">
+          <img class="card-img-top" src="assets/img/ImageCar.jpg" alt="taxideal Card image cap">
+          <div class="card-body mx-3 pb-0 px-0">
+            <div class="td_venders_img"> <img src="assets/img/car_icon.png" alt="taxideal icon"></div>
+            <h5 class="card-title">Own Taxi Drivers</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+              content.</p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+<section class="sec_testimonial  py-5">
+  <h5 class="my-0 all_h5 text-center" translate>Testimonial</h5>
+  <h4 class="my-3 text-center heder_desc">What Our Customer says!</h4>
+  <div class="container mt-5 text-center">
+    <div id="st_testimonial_slider" class="carousel slide">
+      <ol class="carousel-indicators">
+        <li data-target="#st_testimonial_slider" data-slide-to="0" class="active"></li>
+        <li data-target="#st_testimonial_slider" data-slide-to="1"></li>
+        <li data-target="#st_testimonial_slider" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="row justify-content-center py-2">
+            <div class="col-11 col-md-11 col-lg-11 col-xl-11 testimonial_box p-5">
+              <p><i class="fa fa-quote-left"></i> element indicates that the enclosed text is a short inline quotation.
+                Most modern browsers implement this by surrounding the text in quotation marks. This element is intended
+                for short quotations <i class="fa fa-quote-right"></i></p>
+              <h4>Jhon Abraham</h4>
+              <h6 class="">@ Bern</h6>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="row justify-content-center py-2">
+            <div class="col-11 col-md-11 col-lg-11 col-xl-11 testimonial_box p-5">
+              <p><i class="fa fa-quote-left"></i> element indicates that the enclosed text is a short inline quotation.
+                Most modern browsers implement this by surrounding the text in quotation marks. This element is intended
+                for short quotations <i class="fa fa-quote-right"></i></p>
+              <h4>Jhon Abraham</h4>
+              <h6 class="">@ Bern</h6>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="row justify-content-center py-2">
+            <div class="col-11 col-md-11 col-lg-11 col-xl-11 testimonial_box p-5">
+              <p><i class="fa fa-quote-left"></i> element indicates that the enclosed text is a short inline quotation.
+                Most modern browsers implement this by surrounding the text in quotation marks. This element is intended
+                for short quotations <i class="fa fa-quote-right"></i></p>
+              <h4>Jhon Abraham</h4>
+              <h6 class="">@ Bern</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="sec_client bg_grey  py-5">
+  <div class="container text-center my-3">
+    <h5 class="my-0 all_h5 text-center" translate>Our</h5>
+    <h4 class="my-3 text-center heder_desc" translate>Partners</h4>
+    <div id="recipeCarousel" class="carousel slide w-100" data-ride="carousel" data-interval="3000">
+      <div class="carousel-inner w-100" role="listbox">
+        <div class="carousel-item row no-gutters active">
+          <div class="col-3 float-left"><img class="img-fluid" src="assets/img/clients/c1.png" alt="taxideal client">
+          </div>
+          <div class="col-3 float-left"><img class="img-fluid" src="assets/img/clients/c2.png" alt="taxideal client">
+          </div>
+          <div class="col-3 float-left"><img class="img-fluid" src="assets/img/clients/c1.png" alt="taxideal client">
+          </div>
+          <div class="col-3 float-left"><img class="img-fluid" src="assets/img/clients/c2.png" alt="taxideal client">
+          </div>
+        </div>
+        <div class="carousel-item row no-gutters">
+          <div class="col-3 float-left"><img class="img-fluid" src="assets/img/clients/c1.png" alt="taxideal client">
+          </div>
+          <div class="col-3 float-left"><img class="img-fluid" src="assets/img/clients/c2.png" alt="taxideal client">
+          </div>
+          <div class="col-3 float-left"><img class="img-fluid" src="assets/img/clients/c1.png" alt="taxideal client">
+          </div>
+          <div class="col-3 float-left"><img class="img-fluid" src="assets/img/clients/c2.png" alt="taxideal client">
+          </div>
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#recipeCarousel" role="button" data-slide="prev">
+        <i class="fa fa-angle-left" aria-hidden="true"></i>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#recipeCarousel" role="button" data-slide="next">
+        <i class="fa fa-angle-right" aria-hidden="true"></i>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div>
+</section>
+<section class="sec_notroles  py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 notroles_box ">
+        <div class="row">
+          <div class="col-3 text-center "><img src="assets/img/r1.png" alt="taxideal icon"> </div>
+          <div class="col-9 px-0">
+            <h5>Secure and safer Rides</h5>
+            <p>These breakpoints are mostly based on minimum viewport widths and allow us to scale up.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 notroles_box ">
+        <div class="row">
+          <div class="col-3 text-center "><img src="assets/img/r2.png" alt="taxideal icon"> </div>
+          <div class="col-9 px-0">
+            <h5>Secure and safer Rides</h5>
+            <p>These breakpoints are mostly based on minimum viewport widths and allow us to scale up.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 notroles_box ">
+        <div class="row">
+          <div class="col-3 text-center "><img src="assets/img/r3.png" alt="taxideal icon"> </div>
+          <div class="col-9 px-0">
+            <h5>Secure and safer Rides</h5>
+            <p>These breakpoints are mostly based on minimum viewport widths and allow us to scale up.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

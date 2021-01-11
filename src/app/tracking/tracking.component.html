@@ -1,0 +1,47 @@
+<!-- <div class="content-wrapper"> -->
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="card">
+				<div class="map">
+					<agm-map [latitude]="currentPos.lat" [longitude]="currentPos.lng" [zoom]="zoom"
+						[disableDefaultUI]="false" [zoomControl]="false" (mapClick)="mapClicked($event)">
+						<agm-marker-cluster>
+							<agm-marker [latitude]="currentPos?.lat" [longitude]="currentPos?.lng"
+								[iconUrl]="{url: currentPos?.imageUrl, scaledSize: {height: 35,width: 25},labelOrigin:{x:50,y:20}}">
+								<agm-info-window [disableAutoPan]="false">
+									Driver Name: <strong>{{currentPos?.name ? currentPos?.name : 'NA'}}</strong><br>
+									CarType: <strong>{{currentPos?.cartype ? currentPos?.cartype : 'NA'}}</strong><br>
+									PhoneNumber: <strong>{{currentPos?.phoneNumber ? currentPos?.phoneNumber : 'NA'}}</strong><br>
+									Login Status: <strong>{{currentPos?.driverStatus ? currentPos?.driverStatus : 'NA'}}</strong>
+									<!-- <app-vehicle-status [vehicleId]="onlineData?.id">
+										</app-vehicle-status> -->
+								</agm-info-window>
+							</agm-marker>
+						</agm-marker-cluster>
+						<agm-polyline strokeColor="red">
+							<agm-polyline-point *ngFor="let point of points" [latitude]="point.lat"
+								[longitude]="point.lng">
+							</agm-polyline-point>
+						</agm-polyline>
+					</agm-map>
+				</div>
+				<div class="row">
+					<div class="form-group">
+						<div class="col-md-12">
+							<label for="" translate>ID:</label>
+							<!-- <label class="form-control rounded-0">{{currentPos?.id}}</label> -->
+							<label class="form-control rounded-0"></label>
+						</div>
+						<div class="col-md-12">
+							<label for="" translate>LAST LOGIN:</label>
+							<!-- <label class="form-control rounded-0">{{currentPos?.TimeStamp}}</label> -->
+							<label class="form-control rounded-0"></label>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- </div> -->

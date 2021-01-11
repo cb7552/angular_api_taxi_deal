@@ -1,0 +1,61 @@
+<div class="content-wrapper">
+  <div class="main-content">
+    <div class="container-fluid">
+      <div class="boxes">
+        <div>
+          <div class="row">
+            <div class="col-md-10">
+              <form class="form" [formGroup]="tripInfoForm">
+                <div class="form-group">
+                  <div class="col-md-6">
+                    <label for="" translate>DriverName</label>
+                    <input formControlName="driverName" name="driverName" class="form-control rounded-0" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="" translate>Source</label>
+                    <input formControlName="source" name="source" class="form-control rounded-0" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-md-6">
+                    <label for="" translate>Destination</label>
+                    <input formControlName="destination" name="destination" class="form-control rounded-0" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="" translate>Price</label>
+                    <input formControlName="price" name="price" class="form-control" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-md-6">
+                    <label for="" translate>BasePrice</label>
+                    <input formControlName="base" name="base" class="form-control rounded-0" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-md-6">
+                    <label for="" translate>RideStatus</label>
+                    <input formControlName="rideStatus" name="rideStatus" class="form-control rounded-0" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-md-6">
+                    <label for="" translate>TotalPrice</label>
+                    <input formControlName="totalPrice" name="totalPrice" class="form-control rounded-0" required
+                      minlength="9">
+                  </div>
+                  <div class="col-md-6">
+                    <label for="" translate>travelTime</label>
+                    <input formControlName="travelTime" name="travelTime" class="form-control " required minlength="6">
+                  </div>
+                </div>
+              </form>
+            </div>
+            <p><button class="btn btn-info" (click)="getinvoice()" type="button" ><i class="fa fa-envelope"></i></button> </p>&nbsp;
+            <p><button (click)="routeTo()" type="button" class="btn btn-info" translate>Back</button></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,113 @@
+<div class="content-wrapper">
+  <div class="main-content">
+    <div class="container-fluid">
+      <div class="boxes">
+        <div class="rowl" [hidden]="isEdit">
+          <div class="col-md-10">
+            <div class="content table-responsive table-full-width table-striped">
+              <table class="table table-bordered table-hover">
+                <tr>
+                  <th translate>Driver Name</th>
+                  <th translate>Driver Status</th>
+                  <th translate>Phone Number</th>
+                  <th translate>Car Type</th>
+                  <th translate>Amount</th>
+                  <th translate>Action</th>
+                </tr>
+                <tr *ngFor="let taxi of myTaxis">
+                  <td>{{taxi?.name}}</td>
+                  <td>{{taxi?.driverStatus}}</td>
+                  <td>{{taxi?.phoneNumber}}</td>
+                  <td>{{taxi?.cartype}}</td>
+                  <td>{{taxi?.amount}}</td>
+                  <td>
+                    <!-- <button (click)="editDriver(taxi?.id)" type="button" class="btn btn-info" translate>Top
+                      Up</button>&nbsp; -->
+                    <button data-toggle="modal" data-target="#driverInfo" type="button" class="btn btn-info"
+                      translate>Top
+                      Up</button>&nbsp;
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="row" [hidden]="!isEdit">
+            <div class="col-md-10">
+              <h3><i class="fa fa-money"></i> {{driverDetails?.drivername ? driverDetails?.drivername : ''}}</h3>
+              <form class="form" [formGroup]="topupForm">
+                <div class="form-group">
+                  <div class="col-md-6">
+                    <label for="" translate>Amount</label>
+                    <input formControlName="amount" type="digit" class="form-control rounded-0"
+                      placeholder="{{'Enter Amount' | translate}}" [ngClass]="{ 'is-invalid': f.amount.errors }">
+                    <control-messages class="alert-align" [control]="topupForm.controls['amount']"
+                      [controlMessage]="'Amount is required'"></control-messages>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="" translate>Wallet Type</label>
+                    <select name="wallet_type" id="wallet_type" formControlName="wallet_type"
+                      class="form-control rounded-0" [ngClass]="{'is-invalid': f.wallet_type.errors }">
+                      <option value="" disabled translate>Payment Method</option>
+                      <option translate>CASH</option>
+                      <option translate>CARD</option>
+                    </select>
+                    <control-messages class="alert-align" [control]="topupForm.controls['wallet_type']"
+                      [controlMessage]="'Wallet Type is required'"></control-messages>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-md-6">
+                    <button type="submit" class="btn btn-success" (click)="addUpdateDriverTopup(topupForm.value)"
+                      translate>Update</button>&nbsp;
+                    <button (click)="cancel()" type="button" class="btn btn-info" translate>Cancel</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div id="driverInfo" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h4 class="modal-title">Driver Topup Info.</h4>
+      </div>
+      <div class="modal-body mb-20 in-blk">
+        <h1 class="del-content text-center" translate> This feature is for premium version contact taxideals.</h1>
+        <div class="row text-center mt-20">
+          <div class="col-md-12">
+            <button type="button" class="btn btn-info" title="" (click)="gotoBashboard()" translate>Ok</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+<div id="driverInfo"  class="modal fade" >
+  <div class="modal-dialog modal-sm" style="max-width: 505px;">
+     <div class="modal-content">
+        <div class="modal-header">
+           <h4 class="modal-title">Driver Topup Info.</h4>
+           <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+           <b class="text-left" translate>          
+                 This feature is for premium version contact taxideals.</b>
+        </div>
+        <div class="modal-footer admin_actionsbtn" style="padding: 0px 20px 20px 0px;">
+           <button type="button" class="btn btn-default" data-dismiss="modal" (click)="gotoBashboard()"
+              style="margin-top: 0px;">
+              Ok
+           </button>
+        </div>
+     </div>
+  </div>
+</div>

@@ -1,0 +1,157 @@
+<header class="st_header st_auth_header d-none d-md-block">
+  <div class="top_header bg_000 d-none d-md-block">
+    <a class="float-left" (click)="routeTo('SEARCH')">
+      <img class="d-inline-block st_logo" src="assets/img/logo.png" alt="taxideal logo"/>
+    </a>
+    <ul class="nav justify-content-end pr-5">
+    <!--  <li class="nav-item">
+        <a class="nav-link  active" translate>Become a Supplier</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link px-0 active">|</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " translate>Become a driver</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link px-0 active">|</a>
+      </li> -->
+      <li class="nav-item"  *ngIf="isIndia">
+        <a class="nav-link "><i class="fa fa-phone" aria-hidden="true"></i> Call us: +41 775256873</a>
+      </li>
+      <li class="nav-item"  *ngIf="!isIndia">
+        <a class="nav-link "><i class="fa fa-phone" aria-hidden="true"></i> Call us: +91  9962239126</a>
+      </li>
+      <li class="nav-item" *ngIf="isSupplier">
+        <a class="nav-link px-0 active">|</a>
+      </li>
+      <li class="nav-item" *ngIf="isSupplier">
+        <a class="nav-link d-inline-block pr-1" (click)="gotoMenus('DASHBOARD')" translate>Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link px-0 active">|</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link d-inline-block pr-1" (click)="gotoLogout()" translate>Logout</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link px-0 active">|</a>
+      </li>
+      <li class="nav-item dropdown">
+        <!-- <a class="nav-link " href="#"><i class="fa fa-globe" aria-hidden="true"></i> English</a> -->
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown">
+          <img [src]="imagePath" alt="taxideal imagePath" />
+          <span class="caret"></span>
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" (click)="switchLanguage('en')" style="color: white" translate> <img
+              src="../assets/img/flag/united-kingdom-flag-icon.png" alt="taxideal icon" class="lang_image" /> English</a>
+          <a class="dropdown-item" (click)="switchLanguage('gr')" style="color: white" translate> <img
+              src="../assets/img/flag/germany-flag-icon.png" alt="taxideal icon" class="lang_image" /> German</a>
+          <a class="dropdown-item" (click)="switchLanguage('fr')" style="color: white" translate> <img
+              src="../assets/img/flag/france-flag-icon.png" alt="taxideal icon" class="lang_image" /> French</a>
+          <a class="dropdown-item" (click)="switchLanguage('it')" style="color: white" translate> <img
+              src="../assets/img/flag/italy-flag-icon.png" alt="taxideal icon" class="lang_image" /> Italian</a>
+          <a class="dropdown-item" (click)="switchLanguage('es')" style="color: white" translate> <img
+              src="../assets/img/flag/spain-flag-icon.png" alt="taxideal icon" class="lang_image" /> Spanish</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <!-- <a class="d-inline-block float-left pl-5 py-2" (click)="routeTo('SEARCH')">
+    <img class="d-inline-block st_logo" src="assets/img/logo.png" />
+  </a> -->
+  <!-- <ul class="st_nav_menu nav d-none d-md-flex justify-content-end pr-5 py-2 mt-1">
+    <li class="nav-item">
+      <a class="nav-link active" href="#">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Partners</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Supports</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link " href="#">contact</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link " href="#">Tourist</a>
+    </li>
+    <li class="nav-item st_auth">
+      <a class="nav-link d-inline-block pr-1" (click)="goToDashboard()">Dashboard</a>
+    </li>
+    <li class="nav-item st_auth">
+      <a class="nav-link d-inline-block pr-1" (click)="routeTo('SIGNIN')">Logout</a>
+    </li>
+  </ul> -->
+</header>
+<aside class="sidemenu" *ngIf="isDriver">
+  <ul class="sidebar-menu pl-2">
+    <li [class]="isProfile ? 'active' : ''"  (click)="gotoMenus('PROFILE')">
+      <a style="cursor:pointer"><span translate>Profile</span></a>
+    </li>
+    <li  [class]="isTripHistory ? 'active' : ''"  (click)="gotoMenus('TRIP')">
+      <a style="cursor:pointer"><span translate>Trip</span></a>
+    </li>
+  </ul>
+</aside>
+<aside class="sidemenu" *ngIf="isUser">
+  <ul class="sidebar-menu pl-2">
+    <li [class]="isProfile ? 'active' : ''" (click)="gotoMenus('PROFILE')">
+      <a style="cursor:pointer"><span translate>Profile</span></a>
+    </li>
+    <li  [class]="isTripHistory ? 'active' : ''"  (click)="gotoMenus('TRIP')">
+      <a style="cursor:pointer"><span translate>Trip</span></a>
+    </li>
+  </ul>
+</aside>
+<aside class="sidemenu" *ngIf="isAdmin">
+  <ul class="sidebar-menu pl-2">
+    <li [class]="isDashboard ? 'active' : ''" (click)="gotoMenus('DASHBOARD')">
+      <a style="cursor:pointer"><span translate>Dashboard</span></a>
+    </li>
+    <li [class]="isApproval ? 'active' : ''" (click)="gotoMenus('APPROVAL')">
+      <a style="cursor:pointer"><span translate>Approval</span></a>
+    </li>
+    <li (click)="gotoMenus('ADMIN')">
+      <a style="cursor:pointer"><span translate>Admins</span></a>
+    </li>
+  </ul>
+</aside>
+<aside class="sidemenu" *ngIf="isSupplier">
+  <ul class="sidebar-menu pl-2">
+    <li [class]="isDashboard ? 'active' : ''" (click)="gotoMenus('DASHBOARD')">
+      <a style="cursor:pointer"><span translate>Dashboard</span></a>
+    </li>
+    <li [class]="isProfile ? 'active' : ''" (click)="gotoMenus('PROFILE')">
+      <a style="cursor:pointer"><span translate>Profile</span></a>
+    </li>
+    <li [class]="isAddNewDriver ? 'active' : ''" (click)="gotoMenus('ADDNEWDRIVER')">
+      <a style="cursor:pointer"><span translate>Add New Driver</span></a>
+    </li>
+    <li [class]="isDriverStatus ? 'active' : ''" (click)="gotoMenus('DRIVERSTATUS')">
+      <a style="cursor:pointer"><span>Driver Status</span></a>
+    </li>
+    <li [class]="isApproval ? 'active' : ''" (click)="gotoMenus('APPROVAL')">
+      <a style="cursor:pointer"><span translate>Approval</span></a>
+    </li>
+    <li [class]="isDriverTopup ? 'active' : ''" (click)="gotoMenus('DRIVERTOPUP')">
+      <a style="cursor:pointer"><span translate>Driver TOPUP</span></a>
+    </li>
+    <li [class]="isMap ? 'active' : ''" (click)="gotoMenus('MAP')">
+      <a style="cursor:pointer"><span translate>Map</span></a>
+    </li>
+    <li [class]="isMessageBook ? 'active' : ''" (click)="gotoMenus('BOOKING')">
+      <a style="cursor:pointer"><span translate>Offline Booking By Sms</span></a>
+    </li>
+    <!-- <li [class]="isOffLineBookSms ? 'active' : ''" (click)="gotoMenus('SMS')">
+      <a style="cursor:pointer"><span translate>Offline Booking by Sms</span></a>
+    </li> -->
+    <li [class]="isTripHistory ? 'active' : ''" (click)="gotoMenus('TRIPHISTORY')">
+      <a style="cursor:pointer"><span translate>Trip History</span></a>
+    </li>
+    <li [class]="isContact ? 'active' : ''" (click)="gotoMenus('CONTACT')" >
+      <a style="cursor:pointer"><span translate>User Contact Details</span></a>
+    </li>
+  </ul>
+</aside>

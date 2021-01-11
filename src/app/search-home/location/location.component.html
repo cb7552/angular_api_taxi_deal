@@ -1,0 +1,72 @@
+<!-- <section class="st_banner"> -->
+  <!-- <div class="search_box h-100">
+    <div class="container h-100">
+      <div class="row h-100  align-items-center justify-content-end">
+        <div class="col-md-6">
+          <form [formGroup]="searchForm">
+            <div class="form-row ">
+              <div class="col-md-12 px-3 search_box_menu text-center">
+                <div class="row">
+                  <ul class="nav nav-tabs">
+                    <li class="col-md-4 col-sm-4 s_b_m nav-item "><a class="nav-link active" data-toggle="pill"
+                        href="#taxi">TAXI</a></li>
+                    <li class="col-md-4 col-sm-4 s_b_m nav-item"><a class="nav-link" data-toggle="pill" href="#taxi">TOURIST</a>
+                    </li>
+                    <li class="col-md-4 col-sm-4 s_b_m nav-item"><a class="nav-link" data-toggle="pill" href="#taxi">RENTALS</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="tab-content">
+                <div id="taxi">
+                  <div class="form-group col-md-12 pt-4">
+                    <label class="mb-0" for="inputEmail4" translate>Pickup Location</label>
+                    <input type="text" placeholder="{{'Source Address' | translate}}" autocorrect="off"
+                      autocapitalize="off" spellcheck="off" class="form-control ds-input" role="combobox"
+                      aria-expanded="true" aria-owns="algolia-autocomplete-listbox-0" formControlName="source"
+                      id="source" name="source" #sourcesearch style="position: relative; vertical-align: top;" />
+                    <img src="assets/img/custom/locate.png" draggable="false" alt="locate-icon" class="locate-icon">
+                  </div>
+                  <div class="form-group col-md-12">
+                    <label class="mb-0" for="inputEmail4" translate>Drop Location</label>
+                    <input type="text" placeholder="{{'Destination Address' | translate}}" autocorrect="off"
+                      autocapitalize="off" spellcheck="off" class="form-control" formControlName="destination"
+                      id="destination" name="destination" #destinationsearch />
+                    <img src="assets/img/custom/locate.png" draggable="false" alt="locate-icon" class="locate-icon">
+                  </div>
+                  <div class="form-group col-md-12">
+                    <label for="inputState" translate>Cartypes</label>
+                    <select class="form-control" formControlName="cartype" id="cartype" name="cartype">
+                      <option vlaue="item" *ngFor="let item of ['All','Auto','Taxi','Transport','Taxi6','Taxi4']">
+                        {{item}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary search-result-btn" (click)="getSearchResult()"
+              translate>Search</button>
+          </form>
+        </div>
+        <div class="col-md-6">
+          </div>
+      </div>
+    </div>
+  </div> -->
+<!-- </section> -->
+
+<agm-map [latitude]="latitude" [longitude]="longitude" (mapClick)="onChoseLocation($event)">
+    <agm-marker 
+    [latitude]="latitude" 
+    [longitude]="longitude"
+    *ngIf="locationChosen"></agm-marker>
+  </agm-map>
+
+
+
+
+
+
+
+

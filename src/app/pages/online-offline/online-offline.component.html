@@ -1,0 +1,102 @@
+<div class="content-wrapper">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <p>
+              <button [hidden]="mapDataMode === 'online'" class="btn btn-success" (click)="setMapDataMode('online')"
+                translate>Switch to Online Mode</button>
+              <button [hidden]="mapDataMode === 'offline'" class="btn btn-info" (click)="setMapDataMode('offline')"
+                translate>Switch to Offline Mode</button>
+            </p>
+            <div class="map">
+              <!-- <agm-map [zoom]="8" [latitude]="lat" [longitude]="lng" [fullscreenControl]='true' [mapTypeControl]='true'> -->
+              <agm-map [zoom]="6" [latitude]="15.5" [longitude]="77.5" [fullscreenControl]='true' [mapTypeControl]='true'>
+                <div *ngIf="isOnlineMode">
+                  <div *ngFor="let onlineData of onlineDatas">
+                    <agm-marker *ngIf="onlineData.presence$ | async as presence; else noneOnlineData"
+                      [latitude]="onlineData?.lat" [longitude]="onlineData?.lng" [markerDraggable]='false'
+                      [iconUrl]="{url:icon + presence?.IS_ANDROID + '.png', scaledSize: {width: 30, height: 30}}">
+                      <agm-info-window [disableAutoPan]="false">
+                        Name Online: <strong>{{onlineData?.name}}</strong><br>
+                        CarType: <strong>{{onlineData?.cartype}}</strong><br>
+                        PhoneNumber: <strong>{{onlineData?.phoneNumber}}</strong><br>
+                        Login Status: <strong>{{onlineData?.driverStatus}}</strong>
+                        <!-- <app-vehicle-status [vehicleId]="onlineData?.id">
+                        </app-vehicle-status> -->
+                      </agm-info-window>
+                    </agm-marker>
+                    <ng-template #noneOnlineData>
+                      <agm-marker [latitude]="onlineData?.lat" [longitude]="onlineData?.lng" [markerDraggable]='false'
+                        [iconUrl]="{url:icon + 'none.png', scaledSize: {width: 30, height: 30}}">
+                        <agm-info-window [disableAutoPan]="false">
+                          Name: <strong>{{onlineData?.name}}</strong><br>
+                          CarTyps: <strong>{{onlineData?.cartype}}</strong><br>
+                          PhoneNumber: <strong>{{onlineData?.phoneNumber}}</strong><br>
+                          <!-- Login Status: <strong>{{onlineData.driverStatus}}</strong><br> -->
+                          <!-- Login Status: {{onlineData.driverStatus}}<app-user-status [uid]="onlineData.driverId">
+                          </app-user-status> -->
+                        </agm-info-window>
+                      </agm-marker>
+                    </ng-template>
+                  </div>
+                </div>
+  
+                <div *ngIf="!isOnlineMode">
+                  <div *ngFor="let offlineData of offlineDatas">
+                    <agm-marker *ngIf="offlineData.presence$ | async as presence; else noneOfflineData"
+                      [latitude]="offlineData.latitude" [longitude]="offlineData.longitude" [markerDraggable]='false'
+                      [iconUrl]="{url:icon + presence?.status + '.png', scaledSize: {width: 30, height: 30}}">
+                      <agm-info-window [disableAutoPan]="false">
+                        Name Offline: <strong>{{offlineData.name}}</strong><br>
+                        CarTyps: <strong>{{offlineData.cartype}}</strong><br>
+                        PhoneNumber: <strong>{{offlineData.phoneNumber}}</strong><br>
+                        <!-- Login Status: <strong>{{onlineData.driverStatus}}</strong><br> -->
+                        <!-- Login Status: {{offlineData.driverStatus}}<app-user-status [uid]="offlineData.driverId">
+                        </app-user-status> -->
+                      </agm-info-window>
+                    </agm-marker>
+                    <ng-template #noneOfflineData>
+                      <agm-marker [latitude]="offlineData.latitude" [longitude]="offlineData.longitude"
+                        [markerDraggable]='false'
+                        [iconUrl]="{url:icon + 'none.png', scaledSize: {width: 30, height: 30}}">
+                        <agm-info-window [disableAutoPan]="false">
+                          Name: <strong>{{offlineData.name}}</strong><br>
+                          CarTyps: <strong>{{offlineData.cartype}}</strong><br>
+                          PhoneNumber: <strong>{{offlineData.phoneNumber}}</strong><br>
+                          <!-- Login Status: <strong>{{onlineData.driverStatus}}</strong><br> -->
+                          <!-- Login Status: {{offlineData.driverStatus}}<app-user-status [uid]="offlineData.driverId">
+                          </app-user-status> -->
+                        </agm-info-window>
+                      </agm-marker>
+                    </ng-template>
+                  </div>
+                </div>
+              </agm-map>
+            </div>
+   <div> 
+  
+                <div class="maps">
+                    <button  class="btn btn-info" (click)="setMap()" translate>Testing Map</button>
+                    <div class="map">
+                        <agm-map [latitude]="currentPos.lat" [longitude]="currentPos.lng" [zoom]="zoom"
+                          [disableDefaultUI]="false" [zoomControl]="false" (mapClick)="mapClicked($event)">
+                          <agm-marker-cluster>
+                            <agm-marker [latitude]="currentPos?.lat" [longitude]="currentPos?.lng"
+                              [iconUrl]="{url: currentPos?.imageUrl, scaledSize: {height: 35,width: 25},labelOrigin:{x:50,y:20}}">
+                            </agm-marker>
+                          </agm-marker-cluster>
+                          <agm-polyline strokeColor="red">
+                            <agm-polyline-point *ngFor="let point of points" [latitude]="point.lat"
+                              [longitude]="point.lng">
+                            </agm-polyline-point>
+                          </agm-polyline>
+                        </agm-map>
+                      </div>
+                  </div>
+            </div>
+         </div>
+        </div>
+      </div>
+    </div>
+  </div>

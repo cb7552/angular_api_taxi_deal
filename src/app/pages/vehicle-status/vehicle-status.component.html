@@ -1,0 +1,5 @@
+<div *ngIf="(vehicleStatus$ | async) as presence" class="tag is-large" [ngClass]="{
+    'is-success': presence.status === 'online',
+    'is-warning': presence.status === 'away',
+    'is-danger': presence.status === 'offline'
+  }"></div>

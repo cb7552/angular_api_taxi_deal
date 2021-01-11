@@ -1,0 +1,10 @@
+{
+  "/app": {
+    "target": "https://standard-project-dot-taxi2deal.appspot.com/app",
+    "secure": false,
+    "pathRewrite": {
+      "^/app/": ""
+    },
+    "changeOrigin": true
+  }
+}

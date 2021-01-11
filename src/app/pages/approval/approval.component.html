@@ -1,0 +1,118 @@
+<div class="content-wrapper">
+  <div class="container-fluid">
+    <div class="rowl" [hidden]="isEdit">
+      <form #form="ngForm">
+        <div class=form-group>
+        </div>
+        <div class="boxes">
+          <div class="content table-responsive table-full-width">
+            <table class="table table-bordered">
+              <tr>
+                <th translate>Name</th>
+                <th translate>Car Type</th>
+                <th translate>Taxi Number</th>
+                <th translate>License Number</th>
+                <th translate>Phone Number</th>
+                <th translate>Status</th>
+                <th translate>Action</th>
+              </tr>
+              <tr *ngFor="let exp of outputdata" class="center">
+                <td>{{exp?.name}}</td>
+                <td>{{exp?.cartype}}</td>
+                <td>{{exp?.numberPlate}}</td>
+                <td>{{exp?.licenceNumber}}</td>
+                <td>{{exp?.phoneNumber}}</td>
+                <td> <button class="btn btn-success" (click)="onSelete(exp.id)" translate>Active</button>&nbsp;
+                  <button class="btn btn-danger" (click)="deactiveDriver(exp.id)" translate>Deactive</button></td>
+                <td><button (click)="editDriver(exp)" type="button" class="btn btn-info" translate><i
+                      class="material-icons">edit</i></button>&nbsp;
+                  <!-- <button (click)="deleteTaxi()" type="button" class="btn btn-danger" translate><i class="material-icons">delete</i></button>-->
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div>
+      <div class="row" [hidden]="!isEdit">
+        <div class="col-md-10">
+          <h3 translate>Driver Detail</h3>
+          <form class="form" [formGroup]="approvalForm">
+            <div class="form-group row">
+              <div class="col-md-6">
+                <label for="" translate>Driver Name</label>
+                <label  name="drivername" class="form-control rounded-0" translate><b>{{editDetails?.drivername}}</b></label>
+                <!-- <input formControlName="drivername" name="drivername" type="text" class="form-control rounded-0"
+                  required> -->
+              </div>
+              <div class="col-md-6">
+                <label for="" translate>Phone Number</label>
+                <label  name="drivername" class="form-control rounded-0" translate><b>{{editDetails?.driverPhonenumber}}</b></label>
+                <!-- <input formControlName="driverPhonenumber" name="driverPhonenumber" type="number"
+                  class="form-control rounded-0" required minlength="9"> -->
+              </div>
+              <!-- <div class="col-md-6">
+                              <label for="">Last Name</label>
+                              <input [(ngModel)]="user.lastName" name="lastName" type="text" class="form-control rounded-0" required>
+                          </div> -->
+            </div>
+
+            <div class="form-group row">
+              <div class="col-md-6">
+                <label for="" translate>Price</label>
+                <input formControlName="price" name="price" type="text" class="form-control rounded-0" required>
+              </div>
+              <div class="col-md-6">
+                <label for="" translate>Seats</label>
+                <input formControlName="seats" name="seats" type="text" class="form-control" required>
+              </div>
+            </div>
+            <div class="form-group row">
+             
+              <div class="col-md-6">
+                <label for="" translate>PeakPrice</label>
+                <input formControlName="peakPrice" name="peakPrice" type="text" class="form-control rounded-0" required>
+              </div>
+              <div class="col-md-6">
+                <label for="" translate>VehicleBrand</label>
+                <input formControlName="vehicleBrand" name="vehicleBrand" type="text" class="form-control " required
+                  minlength="6">
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-md-6">
+                <label for="" translate>TaxiNumber</label>
+                <input formControlName="taxiNumber" name="taxiNumber" type="text" class="form-control rounded-0"
+                  required>
+              </div>
+              <div class="col-md-6">
+                <label for="" translate>Car Type</label>
+                <input formControlName="carType" name="carType" type="text" class="form-control rounded-0" required>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-md-6">
+                <label for="" translate>Year</label>
+                <input formControlName="year" name="year" type="text" class="form-control rounded-0" required>
+              </div>
+              <div class="col-md-6">
+                <label for="" translate>Status</label>
+                <label  name="status" class="form-control rounded-0" translate><b>{{editDetails?.status}}</b></label>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-md-6">
+                <button (click)="vechicleDriver(approvalForm.value) " type="button" class="btn btn-success"
+                  translate>Update</button>&nbsp;
+                <button (click)="cancel()" type="button" class="btn btn-info" translate>Cancel</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

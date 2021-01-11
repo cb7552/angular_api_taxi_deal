@@ -1,0 +1,98 @@
+<div class="content-wrapper">
+  <div class="container-fluid">
+    <div class="container">
+        <div class="boxes">
+      <div class="row" >
+        <div class="col-6"><h3 align="text-center">Ride Fare</h3></div>
+        <div class="col-6" align="right"><button (click)="routeTo()" type="button" class="btn btn-info" translate>Offline Booking</button></div>
+         </div>
+      <div class="row" [hidden]="isEdit">
+          <div class="col-6" style="width: 250px;">
+            <form [formGroup]="searchForm">
+                <div class="form-row ">
+                  <div class="col-md-12 px-3 search_box_menu text-center">
+                  <div class="tab-content">
+                    <div id="taxi">
+                      <div class="form-group col-md-12 pt-4">
+                          <label class="mb-0" for="inputEmail4" translate>Pickup Location</label>
+                          <input type="text" placeholder="{{'Source Address' | translate}}" autocorrect="off"
+                              autocapitalize="off" spellcheck="off" class="form-control ds-input" formControlName="source"
+                                        id="source" name="source" #sourcesearch style="position: relative; vertical-align: top;" />
+                      </div>
+                      <div class="form-group col-md-12">
+                          <label class="mb-0" for="inputEmail4" translate>Drop Location</label>
+                          <input type="text" placeholder="{{'Destination Address' | translate}}" autocorrect="off"
+                              autocapitalize="off" spellcheck="off" class="form-control" formControlName="destination"
+                                        id="destination" name="destination" #destinationsearch />
+                      </div>
+                     </div>
+                    </div>
+                  </div>
+                 </div>
+                     <button type="submit" class="btn btn-primary search-result-btn" (click)="getSearchResult()"
+                                translate>Search</button>  
+            </form>
+          </div>
+          <div class="col-6" >
+              <div id="map-canvas"> 
+                <agm-map [latitude]="lat1" [longitude]="lng1" >
+                    <agm-marker [latitude]="lat2" [longitude]="lng2"></agm-marker>
+                </agm-map>
+              </div>
+          </div>
+        </div>
+
+         <div class="col-md-10" [hidden]="!isEdit">
+              <h3 translate>Ride Far</h3>
+                <div class="content table-responsive table-full-width table-striped">
+                    <div>Total {{this.totalKM}} KM and {{this.duration}} Min.</div>
+                      <div class="form-group">
+                          <div class="col-md-6">
+                              <label for="" translate>BaseFare</label>
+                              <label class="form-control rounded-0">{{myRide?.baseFare}}</label>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <div class="col-md-6">
+                              <label for="" translate>price</label>
+                              <label class="form-control rounded-0">{{myRide?.price}}</label>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <div class="col-md-6">
+                              <label for="" translate>totalPrice</label>
+                              <label class="form-control rounded-0">{{myRide?.totalPrice}}</label>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <div class="col-md-6">
+                              <label for="" translate>km</label>
+                              <label class="form-control rounded-0">{{myRide?.km}}</label>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <div class="col-md-6">
+                              <label for="" translate>percentage</label>
+                              <label class="form-control rounded-0">{{myRide?.percentage}}</label>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <div class="col-md-6">
+                              <label for="" translate>tax</label>
+                              <label class="form-control rounded-0">{{myRide?.tax}}</label>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <div class="col-md-6">
+                              <label for="" translate>discount</label>
+                              <label class="form-control rounded-0">{{myRide?.discount}}</label>
+                          </div>
+                      </div>
+                      <button (click)="clearForm()" type="button" class="btn btn-info" translate>Cancel</button>
+                </div>
+         </div>
+         
+     </div>
+      </div>
+       </div>
+       </div>

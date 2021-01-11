@@ -1,0 +1,618 @@
+<div class="content-wrapper">
+  <div class="container-fluid">
+    <!-- <div [hidden]="isEdit">
+      <div class="row mb0" style="float: right;">
+        <div class="col-md-12">
+          <button class="btn btn-warning " (click)="price()">Price</button>
+        </div>
+      </div>
+      <div class="rowl" style="float: right;">
+        <div class="col-sm-1  col-xs-12">
+          <button class="btn btn-warning " (click)="reload()"><i class="fa fa-refresh"></i></button>
+        </div>
+      </div>
+      <h2 translate>Ride Status</h2>
+      <div class="row mb0">
+        <div class="col-md-4">
+          <div class="card">
+            <h3 class="card-title float-right">125</h3>
+            <div class="card-content float-left">
+              <p class="category mb5" translate>Total rides received</p>
+              <a (click)="routeTo('DRIVERSTATUS')" translate>View Drivers&nbsp;<i
+                  class="fa fa-chevron-circle-right"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <h3 class="card-title float-right">20</h3>
+            <div class="card-content float-left">
+              <p class="category mb5" translate>Total Cancelled Ride By Driver</p>
+              <a (click)="routeTo('DRIVERLIST')" translate>View Drivers&nbsp;<i
+                  class="fa fa-chevron-circle-right"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <h3 class="card-title float-right">15</h3>
+            <div class="card-content float-left">
+              <p class="category mb5" translate>Total Cancelled Ride by User</p>
+              <a (click)="routeTo('DRIVERSTATUS')" translate>View Drivers&nbsp;<i
+                  class="fa fa-chevron-circle-right"></i></a>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="row" style="float: right;">
+        <div class="col-sm-1  col-xs-12">
+          <button class="btn btn-warning " (click)="reload()"><i class="fa fa-refresh"></i></button>
+        </div>
+      </div>
+      <h2 translate>Driver Status</h2>
+      <div class="row mb0">
+        <div class="col-md-4">
+          <div class="card" (click)="routeTo('DRIVERSTATUS')">
+            <h3 class="card-title float-right">{{this.offlineDatas?.length}}</h3>
+            <div class="card-content float-left">
+              <p class="category mb5" translate>Total Drivers</p>
+              <a (click)="routeTo('DRIVERSTATUS')" translate>View Drivers&nbsp;<i
+                  class="fa fa-chevron-circle-right"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card" (click)="getonline()">
+            <h3 class="card-title float-right">{{onDutyDrivers?.length > 0 ? onDutyDrivers?.length : 0}}</h3>
+            <div class="card-content float-left">
+              <p class="category mb5" translate>On Duty Drivers</p>
+              <a (click)="getonline()" translate>View Drivers&nbsp;<i class="fa fa-chevron-circle-right"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card" (click)="getoffline()">
+            <h3 class="card-title float-right">{{ offDutyDrivers?.length > 0 ? offDutyDrivers?.length : 0 }}</h3>
+            <div class="card-content float-left">
+              <p class="category mb5" translate>Off Duty Drivers</p>
+              <a (click)="getoffline()" translate>View Drivers&nbsp;<i class="fa fa-chevron-circle-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="float: right;">
+        <div class="col-sm-1  col-xs-12">
+          <button class="btn btn-warning " (click)="reload()"><i class="fa fa-refresh"></i></button>
+        </div>
+      </div>
+      <h2 translate>Vehicle Status</h2>
+      <div class="row mb0">
+        <div class="col-md-3">
+          <div class="card" (click)="getTaxi()">
+            <h3 class="card-title float-right">{{ taxiStatus?.length > 0 ? taxiStatus.length : 0 }}</h3>
+            <div class="card-content float-left">
+              <p class="category mb5" translate>Total Taxi</p>
+              <a id="Taxi" (click)="getTaxi()" translate>View Taxi&nbsp;<i class="fa fa-chevron-circle-right"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card" (click)="getTransport()">
+            <h3 class="card-title float-right">{{ transportStatus?.length > 0 ? transportStatus.length : 0}}</h3>
+            <div class="card-content float-left">
+              <p class="category mb5" translate>Total Transport</p>
+              <a (click)="getTransport()" translate>View Transport&nbsp;<i class="fa fa-chevron-circle-right"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card" (click)="getAuto()">
+            <h3 class="card-title float-right">{{ autoStatus?.length > 0 ? autoStatus.length : 0}}</h3>
+            <div class="card-content float-left">
+              <p class="category mb5" translate>Total Auto</p>
+              <a (click)="getAuto()" translate>View Auto&nbsp;<i class="fa fa-chevron-circle-right"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card" (click)="getTaxi6()">
+            <h3 class="card-title float-right">{{ taxi6Status?.length > 0 ? taxi6Status.length : 0 }}</h3>
+            <div class="card-content float-left">
+              <p class="category mb5" translate>Total Volvo</p>
+              <a (click)="getTaxi6()" translate>View Volvo&nbsp;<i class="fa fa-chevron-circle-right"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card" (click)="getTaxi4()">
+            <h3 class="card-title float-right">{{ taxi4Status?.length > 0 ? taxi4Status.length : 0 }}</h3>
+            <div class="card-content float-left">
+              <p class="category mb5" translate>Total Mini</p>
+              <a (click)="getTaxi4()" translate>View Mini&nbsp;<i class="fa fa-chevron-circle-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card">
+            <h1 translate>My Taxis</h1>
+            <div class="graph-sec">
+              <div id="mytaxichart" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card">
+            <h1 translate>Trips</h1>
+            <div class="graph-sec">
+              <div id="tripchart" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <div [hidden]="isEdit">
+      <div class="details">
+        <nav>
+          <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a [class]="activeTab === 'details' ? 'nav-item nav-link active' : 'nav-item nav-link'" id="nav-details-tab"
+              data-toggle="tab" (click)="result('details')" data-target="#nav-details" role="tab"
+              aria-controls="nav-details" aria-selected="true">DETAILS</a>
+            <a [class]="activeTab === 'map' ? 'nav-item nav-link active' : 'nav-item nav-link'" id="nav-map-tab"
+              data-toggle="tab" (click)="result('map')" data-target="#nav-map" role="tab" aria-controls="nav-map"
+              aria-selected="false">MAP</a>
+          </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+          <div [class]="activeTab === 'details' ? 'tab-pane fade show active' : 'tab-pane fade'" id="nav-details"
+            role="tabpanel" aria-labelledby="nav-details-tab">
+            <div>
+              <div class="ride_status">
+                <span><b>Ride</b> Status</span>
+              </div>
+              < §1111111 class="row">
+                <div class="col-lg-4 col-12">
+                  <div class="card one-card">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-12">
+                          <p class="total" translate>TOTAL RIDES RECEIVED</p>
+                          <div class="row" (click)="routeTo('DRIVERSTATUS')" >
+                            <span class="count col-6">{{ this.Prices?.length > 0 ? this.Prices?.length : 0}}</span>
+                            <span class="col-6 view-driver">
+                              <label class="drivers" translate>View Drivers</label>
+                              <i class=" fa fa-angle-down"></i>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-12">
+                  <div class="card two-card">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-12">
+                          <p class="total" translate>TOTAL CANCELLES RIDE BY DRIVER</p>
+                          <div class="row" (click)="routeTo('DRIVERLIST')">
+                            <span class="count col-6">20</span>
+                            <span class="col-6 view-driver">
+                              <label class="drivers" translate>View Drivers</label>
+                              <i class=" fa fa-angle-down"></i>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-12">
+                  <div class="card three-card">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-12">
+                          <p class="total" translate>TOTAL CANCELLED RIDE BY USER</p>
+                          <div class="row" (click)="routeTo('DRIVERSTATUS')">
+                            <span class="count col-6">15</span>
+                            <span class="col-6 view-driver">
+                              <label class="drivers" translate>View Drivers</label>
+                              <i class=" fa fa-angle-down"></i>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="ride_status">
+                <span><b>Driver</b> Status</span>
+              </div>
+              <div class="row">
+                <div class="col-lg-4 col-12">
+                  <div class="card four-card">
+                    <div class="card-body">
+                      <div class="row" (click)="routeTo('DRIVERSTATUS')">
+                        <div class="col-12">
+                          <p class="total" translate>TOTAL DRIVERS</p>
+                          <div class="row">
+                            <span class="count col-6">{{this.offlineDatas?.length > 0 ? this.offlineDatas?.length : 0}}</span>
+                            <span class="col-6 view-driver">
+                              <label class="drivers" translate>View Drivers</label>
+                              <i class=" fa fa-angle-down"></i>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-12">
+                  <div class="card five-card">
+                    <div class="card-body">
+                      <div class="row"  (click)="getonline()">
+                        <div class="col-12">
+                          <p class="total" translate>ON DUTY DRIVERS</p>
+                          <div class="row">
+                            <span class="count col-6">{{onDutyDrivers?.length > 0 ? onDutyDrivers?.length : 0}}</span>
+                            <span class="col-6 view-driver">
+                              <label class="drivers" translate>View Drivers</label>
+                              <i class=" fa fa-angle-down"></i>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-12">
+                  <div class="card six-card">
+                    <div class="card-body">
+                      <div class="row"  (click)="getoffline()">
+                        <div class="col-12">
+                          <p class="total" translate>OFF DUTY DRIVERS</p>
+                          <div class="row">
+                            <span class="count col-6">{{ offDutyDrivers?.length > 0 ? offDutyDrivers?.length : 0 }}</span>
+                            <span class="col-6 view-driver">
+                              <label class="drivers" translate>View Drivers</label>
+                              <i class=" fa fa-angle-down"></i>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="vehicle-status">
+              <div class="ride_status">
+                <span><b>Vehicle</b> Status</span>
+              </div>
+              <div class="row">
+                <div class="col-lg-4 col-12">
+                  <div class="card seven-card">
+                    <div class="card-body">
+                      <div class="row" (click)="getTaxi()">
+                        <div class="col-12">
+                          <p class="total" translate>TOTAL TAXI</p>
+                          <div class="row">
+                            <span class="count col-6">{{ taxiStatus?.length > 0 ? taxiStatus.length : 0 }}</span>
+                            <span class="col-6 view-driver">
+                              <label class="drivers" translate>View Drivers</label>
+                              <i class=" fa fa-angle-down"></i>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-12">
+                  <div class="card eight-card">
+                    <div class="card-body">
+                      <div class="row" (click)="getTransport()">
+                        <div class="col-12">
+                          <p class="total" translate>TOTAL TRANSPORT</p>
+                          <div class="row">
+                            <span class="count col-6">{{ transportStatus?.length > 0 ? transportStatus.length : 0}}</span>
+                            <span class="col-6 view-driver">
+                              <label class="drivers" translate>View Drivers</label>
+                              <i class=" fa fa-angle-down"></i>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-12">
+                  <div class="card nine-card">
+                    <div class="card-body">
+                      <div class="row" (click)="getAuto()">
+                        <div class="col-12">
+                          <p class="total" translate>TOTAL AUTO</p>
+                          <div class="row">
+                            <span class="count col-6">{{ autoStatus?.length > 0 ? autoStatus.length : 0}}</span>
+                            <span class="col-6 view-driver">
+                              <label class="drivers" translate>View Drivers</label>
+                              <i class=" fa fa-angle-down"></i>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-12">
+                  <div class="card ten-card">
+                    <div class="card-body">
+                      <div class="row" (click)="getTaxi6()">
+                        <div class="col-12">
+                          <p class="total" translate>TOTAL VOLVO</p>
+                          <div class="row">
+                            <span class="count col-6">{{ taxi6Status?.length > 0 ? taxi6Status.length : 0 }}</span>
+                            <span class="col-6 view-driver">
+                              <label class="drivers" translate>View Drivers</label>
+                              <i class=" fa fa-angle-down"></i>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-12">
+                  <div class="card eleven-card">
+                    <div class="card-body">
+                      <div class="row" (click)="getTaxi4()">
+                        <div class="col-12">
+                          <p class="total" translate>TOTAL MINI</p>
+                          <div class="row">
+                            <span class="count col-6">{{ taxi4Status?.length > 0 ? taxi4Status.length : 0 }}</span>
+                            <span class="col-6 view-driver">
+                              <label class="drivers" translate>View Drivers</label>
+                              <i class=" fa fa-angle-down"></i>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row graph">
+              <div class="col-lg-6 col-12">
+                <div class="card">
+                  <div class="taxis">
+                    <label class="title-taxis">My Taxis</label>
+                  </div>
+                  <div>
+                    <div id="mytaxichart" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 col-12">
+                <div class="card">
+                  <div class="trips">
+                    <label class="title-trips">Trips</label>
+                  </div>
+                  <div>
+                    <div id="tripchart" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div [class]="activeTab === 'map' ? 'tab-pane fade show active' : 'tab-pane fade'" role="tabpanel"
+            id="nav-map" aria-labelledby="nav-map-tab">
+            <div>
+              <label class="active-status">Active & Inactive Drivers</label>
+            </div>
+            <div>
+              <div class="row  map-status">
+                <div class="col-lg-6 col-12">
+                  <div class="card first-active">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-12">
+                          <p class="total">ACTIVE DRIVERS</p>
+                          <div class="row">
+                            <span class="count col-6">59</span>
+                            <span class="col-6 view-driver">
+                              <label class="drivers">View Drivers</label>
+                              <i class=" fa fa-angle-down"></i>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-12">
+                  <div class="card second-inactive">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-12">
+                          <p class="total">INACTIVE DRIVERS</p>
+                          <div class="row">
+                            <span class="count col-6">26</span>
+                            <span class="col-6 view-driver">
+                              <label class="drivers">View Drivers</label>
+                              <i class=" fa fa-angle-down"></i>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row map-statuss">
+                <div class="col-12">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-6 active_drivers">
+                          <div class="title">
+                            <img src="assets/img/car-green.png" alt="car" class="carr">
+                            <label class="total-active">ACTIVE DRIVERS</label>
+                          </div>
+                          <div class="row">
+                            <span class="countt col-6">59</span>
+                            <span class="col-6 view-driver">
+                              <label class="drivers">View Drivers</label>
+                              <i class=" fa fa-angle-down"></i>
+                            </span>
+                          </div>
+                        </div>
+                        <div class="col-6">
+                          <div class="title">
+                            <img src="assets/img/car-yellow.png" alt="car" class="carr">
+                            <label class="total-inactive">INACTIVE DRIVERS</label>
+                          </div>
+                          <div class="row">
+                            <span class="countt col-6">26</span>
+                            <span class="col-6 view-driver">
+                              <label class="drivers">View Drivers</label>
+                              <i class=" fa fa-angle-down"></i>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="map-location">
+              <!-- <agm-map [latitude]="lat" [longitude]="lng">
+                <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+              </agm-map> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div [hidden]="!isEdit">
+      <div class="col-md-10">
+        <h3 translate> Price Calculation</h3>
+
+        <div class="row mb0" style="float: right;">
+          <div class="col-sm-1  col-xs-12">
+            <button class="btn btn-warning " (click)="getMyTaxis()" translate>Back</button>
+          </div>
+        </div>
+        <div class="rowl">
+          <nav class="navbar" style="background-color:white">
+            <input class="form-control" font-color="#000" placeholder="Filter Values..." type="text" name="search"
+              [(ngModel)]="filterText">
+          </nav>
+        </div>
+        <div class="content table-responsive table-full-width table-striped">
+          <table class="table table-bordered table-hover">
+            <tr>
+              <th class="info" translate>Index</th>
+              <th translate>Region</th>
+              <th translate>CarType</th>
+              <th translate>BasePrice</th>
+              <th translate>price</th>
+              <th translate>PeakPrice</th>
+              <th translate>KM</th>
+              <th translate>WaitingTime</th>
+            </tr>
+            <!-- <tr *ngFor="let exp of prices; let i=index" > -->
+            <tr *ngFor="let exp of (prices | customfilter : {region: filterText, 
+                       cartype: filterText} : false);let i=index">
+              <td>{{i+1}}</td>
+              <td>{{exp.region}}</td>
+              <td>{{exp.type}}</td>
+              <td>{{exp.basePrice}}</td>
+              <td>{{exp.price}}</td>
+              <td>{{exp.peakPrice}}</td>
+              <td>{{exp.km}}</td>
+              <td>{{exp.waitingTime}}</td>
+              <!-- <td> <button (click)="show(exp?.id)" type="button" class="btn btn-info" translate>Edit
+                      Price</button></td> -->
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div [hidden]="!isEdit">
+      <div class="col-md-10">
+        <h3 translate> Price Calculation</h3>
+
+        <div class="row mb0" style="float: right;">
+          <div class="col-sm-1  col-xs-12">
+            <button class="btn btn-warning " (click)="getMyTaxis()" translate>Back</button>
+          </div>
+        </div>
+        <div class="row" [hidden]="!isEditPrice">
+          <div class="col-md-10">
+            <h3 translate>Driver Detail</h3>
+            <form class="form">
+              <div class="form-group">
+                <div class="col-md-6">
+                  <label for="" translate>Region</label>
+                  <input name="region" type="text" class="form-control rounded-0" required>
+                </div>
+                <div class="col-md-6">
+                  <label for="" translate>Cartype</label>
+                  <input name="type" type="text" class="form-control rounded-0" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-md-6">
+                  <label for="" translate>BasePrice</label>
+                  <input name="basePrice" type="text" class="form-control rounded-0" required>
+                </div>
+                <div class="col-md-6">
+                  <label for="" translate>Price</label>
+                  <input name="price" type="text" class="form-control" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-md-6">
+                  <label for="" translate>peakPrice</label>
+                  <input name="peakPrice" type="text" class="form-control rounded-0" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-md-6">
+                  <label for="" translate>km</label>
+                  <input name="km" type="text" class="form-control rounded-0" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-md-6">
+                  <label for="" translate>waitingTime</label>
+                  <input name="waitingTime" type="text" class="form-control rounded-0" required minlength="9">
+                </div>
+                <div class="col-md-6">
+                  <label for="" translate>minimumPrice</label>
+                  <input name="minimumPrice" type="text" class="form-control " required minlength="6">
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

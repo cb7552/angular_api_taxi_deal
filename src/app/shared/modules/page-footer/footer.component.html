@@ -1,0 +1,73 @@
+<footer class="st_footer py-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 desc_block">
+          <img src="assets/img/flogo.png" alt="taxideal icon">
+        <!--  <div class="d-block text-left">
+            <ul class="nav dropdown-footer">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                  aria-expanded="false"><i class="fa fa-globe" aria-hidden="true"></i> English</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#"><i class="fa fa-globe" aria-hidden="true"></i> English</a>
+                  <a class="dropdown-item" href="#"><i class="fa fa-globe" aria-hidden="true"></i> Hindi</a>
+                </div>
+              </li>
+            </ul>
+          </div>-->
+ 
+          <p class="pr-lg-5 pl-md-2" translate>
+              The Taxideals.ch was started in 2007.The booking app was founded using services like tracking and booking the Taxi
+              and cabs, as well as the mobile request acceptance features. 
+          </p>
+
+        </div>
+        <div class="col-md-2 px-md-0 footer_nav">
+          <h5 translate>About Taxideals</h5>
+          <a class="nav-link " (click)="routeTo('SEARCH')" translate>Home</a>
+          <a (click)="routeTo('REGISTRATION')" translate>Partners</a>
+          <!--<a href="">Supports</a> -->
+          <a class="nav-link" (click)="routeTo('CONTACT')" translate>Contact</a>
+          <a href="https://taxideals.in/help/faq/user/index.html" translate>Help</a>
+
+        </div>
+        <div class="col-md-3 footer_social px-md-0">
+          <h5 translate>Social Links</h5>
+          <p class="pl-2 sl">
+           <a href="https://www.facebook.com/taxideals.swiss/#!"> <i class="fa fa-facebook-square" ></i></a>
+           <a href="https://twitter.com/taxideals_ch/#!"><i class="fa fa-twitter"></i></a>
+           <a href="https://www.youtube.com/channel/UCifU9RYQsJsChYKyDfCSpMQ"><i class="fa fa-youtube"></i></a>
+           <a href="https://www.instagram.com/taxideals/"><i class="fa fa-instagram"></i></a></p>
+          <p class="pl-2 mb-1 cl pt-4" translate>
+            <i class="fa fa-phone"></i> Call Us
+          </p>
+          <p class="pl-2 " *ngIf="isIndia"  translate> +41 775256873 </p>
+          <p class="pl-2 " *ngIf="!isIndia" translate> +91  9962239126 </p>
+
+        </div>
+        <div class="col-md-3 px-md-0 subscribe-block">
+            <form action="https://script.google.com/macros/s/AKfycby-pbZnmz7W92pl2JY7op1x7W6IU7O4_B-iOly5_id5G_-o32yq/exec" 
+            target="_blank" method="POST" id="gform" #form>
+          <h5 translate>Subscribe</h5>
+          <p class="pr-lg-5" translate>To get discount and coupon card updates</p>
+               <p class="position-relative col-lg-9 px-0 footer-form">
+            <input id= "gform" type="email" name="email" placeholder="Enter your email Id" >
+          </p>
+          <button type="submit"(click)="submit(); form.reset()"><i class="fa fa-paper-plane" aria-hidden="false"></i></button>
+        </form>
+        </div>
+      
+    </div>
+    </div>
+  </footer>
+
+  <footer class="st_footer_bottom py-2">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 pr-0 ">
+          <p class="mb-0">Copyright &copy; 2019 Taxideals. All right reserved.</p>
+        </div>
+        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 pl-0 "> <a (click)="routeTo('TERMS')" translate>Privacy Policy</a> <a (click)="routeTo('TERMS')" translate>Teams & Conditions</a> </div>
+      </div>
+    </div>
+  </footer>

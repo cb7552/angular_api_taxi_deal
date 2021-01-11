@@ -1,0 +1,61 @@
+<div class="content-wrapper">
+  <div class="main-content">
+    <div class="container-fluid">
+      <div class="boxes">
+        <div class="rowl">
+          <div *ngIf="bookMyTaxi" class="col-md-10">
+            <div class="admin-home-tab">
+              <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#super001" translate>Driver</a></li> &nbsp;
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="row">
+            <div [formGroup]="bookMessageForm" class="col-md-10">
+              <div class="form-group">
+                <label for="" translate>Source Address</label>
+                <input type="text" formControlName="source" placeholder="{{'Source Address' | translate}}"
+                  autocorrect="off" autocapitalize="off" spellcheck="off" class="form-control rounded-0"
+                  aria-expanded="true" aria-owns="algolia-autocomplete-listbox-0" id="source" name="source"
+                  #sourcesearch style="position: relative; vertical-align: top;" />
+                <control-messages class="alert-align" [control]="bookMessageForm.controls['source']"
+                  [controlMessage]="'Please fill source address'"></control-messages>
+              </div>
+              <div class="form-group">
+                <label for="" translate>Destination Address</label>
+                <input type="text" formControlName="destination" placeholder="{{'Destination Address' | translate}}"
+                  autocorrect="off" autocapitalize="off" spellcheck="off" class="form-control rounded-0"
+                  id="destination" name="destination" #destinationsearch />
+                <control-messages class="alert-align" [control]="bookMessageForm.controls['destination']"
+                  [controlMessage]="'Please fill source address'"></control-messages>
+              </div>
+
+              <div class="form-group">
+                <b> <label for="role" translate>Select Driver</label>
+                  <select id="role" formControlName="driver" class="form-control" name="driver">
+                    <option value="" disabled translate>Select Driver</option>
+                    <option *ngFor="let t of bookMyTaxi;" [ngValue]="t">{{t.name}} - - {{t.driverStatus}}</option>
+                  </select></b>
+              </div>
+              <div class="form-group">
+                <b> <label for="contactNote" id="contactNote-w-lbl" translate>Comment/Message</label>
+                  <textarea class="form-control margined--bottom-half" formControlName="remarks" id="contactNote"
+                    rows="8" name="remarks" placeholder="Sending Details"></textarea>
+                  <control-messages class="alert-align" [control]="bookMessageForm.controls['remarks']"
+                    [controlMessage]="'Please fill remarks'"></control-messages>
+                </b>
+              </div>
+
+              <!-- <input type="hidden" name="group_id" id="group_id" value="1" /> -->
+              <input type="button" (click)="sendPushNotification(bookMessageForm.value)"
+                class="btn text-muted text-center btn-default" value="Send" />
+              <br>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

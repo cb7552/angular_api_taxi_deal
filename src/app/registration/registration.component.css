@@ -1,0 +1,39 @@
+/* .form:hover{
+    background-color: #ff1313;
+    border-color: #f2c144;  
+    color: #f2c144;
+
+} 
+.form .login_logo src {
+  height: 100px;
+}
+.form .btn-success:hover {
+  color: #f2c144;
+  background-color: #ff1313;
+  border-color: #f2c144;
+}*/
+
+.register_form .form-group{
+  margin-bottom: 30px;
+}
+.register_form .card-body{
+  box-shadow: 0 0 6px 0 #ccc;
+  padding: 30px;
+  margin-top: 50px;
+}
+.register_form .text-center:hover{
+  color: #f24444;
+  border: #f2c144;
+
+}
+.account_yet {
+  display: inline;
+}
+.login_logo {
+  width: 330px;
+  margin: 0 auto;
+  display: block;
+  margin-bottom: 15px;
+}
+
+

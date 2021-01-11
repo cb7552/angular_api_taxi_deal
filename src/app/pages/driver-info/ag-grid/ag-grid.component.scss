@@ -1,0 +1,103 @@
+.ride-status{
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    // box-shadow: 3px 3px 5px 6px #ccc;
+    box-shadow: 0px 2px 10px -2px #e6e6e6;
+    .title{
+        padding-top: 20px;
+
+        .heading{
+            font-family: 'Open Sans';
+            font-weight: 600;
+            font-size: 24px;
+            margin-left: 20px;
+        }
+        .search{
+            border: 1px solid #45414E14;
+            border-radius: 30%;
+        }
+
+        .form-inline{ 
+            border: 1px solid #C9C9C9;
+            border-radius: 20px;
+            width: 202px;
+            height: 42px;
+            display: inline-block;
+            margin-right: 13px;
+    
+            .form-control{
+                border: none;
+                width: 142px;
+                padding-bottom: 8px;
+                border-radius: 20px;
+                padding-left: 0;
+            }
+            .form-control:focus {
+                box-shadow: none;
+            }
+
+            .fa {
+                color: #fff;
+                border: 1px solid #FEBC21;
+                width: 32px;
+                height: 32px;
+                border-radius: 16px;
+                background-color: #FEBC21;
+                padding-top: 6px;
+                padding-right: 8px;
+                margin-right: 6px;
+                margin-top: 4px;
+            }
+        }
+    
+        .add-new{
+            border: 1px solid #FEBC21;
+            height: 40px !important;
+            border-radius: 20px;
+            background-color: #FEBC21;
+            width: 133px;
+            height: 42px;
+            font-size: 14px;
+            font-family: 'Open Sans';
+            font-weight: 500;
+            padding-left: 18px;
+            padding-top: 3px;
+            display: inline-block;
+    
+            .fa {
+                border: 1px solid #000;
+                width: 32px;
+                height: 32px;
+                border-radius: 16px;
+                padding-top: 8.5px;
+                padding-right: 9.5px;
+                margin-right: 4px;
+                margin-top: -1px;
+            }
+
+            .add{
+                padding-right: 9px;
+            }
+
+           
+        }
+        .plus{
+            padding-right: 5px !important;
+        }
+
+        .col-lg-5{
+            display: block;
+            text-align: right;
+            padding-right: 35px;
+        }
+    }
+    
+.form-inline .form-control
+{
+    display: inline-block;
+  
+} 
+
+}
+

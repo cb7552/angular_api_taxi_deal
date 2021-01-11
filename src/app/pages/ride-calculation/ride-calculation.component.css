@@ -1,0 +1,33 @@
+agm-map {
+    height: 300px;
+}
+#map-canvas {
+    height: 100%;
+    width: 100%;
+  }
+
+  .column {
+    float: left;
+    padding: 10px;
+    height: 300px; /* Should be removed. Only for demonstration */
+  }
+  
+  .left1, .right1 {
+    width: 350px;
+  }
+  
+  .middle {
+    width: 10%;
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+ 
+  
+ 
+
+  

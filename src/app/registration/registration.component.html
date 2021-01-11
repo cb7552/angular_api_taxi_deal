@@ -1,0 +1,94 @@
+<alert></alert>
+<app-header></app-header>
+<div class="rowl pt-5">
+  <div class="col-md-5 mx-auto">
+   <div class="register_form">
+    <!--<div class="card ">-->
+      <div class="card-body ">
+        <div class="form" [formGroup]="registerForm">
+          <div class="col-sm-12 padd0">
+              <div class="row">
+              <div class="form-group col-sm-6">
+              <label class="control-label" translate>FirstName</label>
+              <input id="firstName" type="text" class="form-control" formControlName="firstName"
+                [ngClass]="{ 'is-invalid': f.firstName.errors }">
+              <control-messages class="alert-align" [control]="registerForm.controls['firstName']"></control-messages>
+              </div>
+              <div class="form-group col-sm-6">
+                <label class="control-label" translate>LastName</label>
+                <input id="lastName" type="text" class="form-control" formControlName="lastName"
+                  [ngClass]="{ 'is-invalid': f.lastName.errors }">
+                <control-messages class="alert-align" [control]="registerForm.controls['lastName']"></control-messages>
+              </div>
+           </div>
+           <div class="form-group">
+              <label class="control-label" translate>Email</label>
+              <input id="email" type="email" class="form-control" formControlName="email"
+                [ngClass]="{ 'is-invalid': f.email.errors }">
+              <control-messages class="alert-align" [control]="registerForm.controls['email']"></control-messages>
+            </div>
+            <div class="form-group ">
+                <label class="control-label" translate>Password</label>
+                <input id="password" type="password"  class="form-control" formControlName="password" minlength="6"
+                  [ngClass]="{ 'is-invalid':f.password.errors }" name="password" ngModel passwordToggle>
+                <control-messages class="alert-align" [control]="registerForm.controls['password']"></control-messages>
+              </div>
+            <div class="form-group">
+              <label class="control-label" translate>Phone Number</label>
+               <!--<input id="phoneNumber" type="text" class="form-control" formControlName="phoneNumber"
+                [ngClass]="{ 'is-invalid': f.phoneNumber.errors }">-->
+              <international-phone-number id="phoneNumber" type="text" class="form-control" formControlName="phoneNumber"
+               placeholder="Enter phone number"  [defaultCountry]="'in'" [required]="true" name="phoneNumber" [allowedCountries]="['in', 'ch', 'gb']"  [ngClass]="{ 'is-invalid': f.phoneNumber.errors }"></international-phone-number>
+               <control-messages class="alert-align" [control]="registerForm.controls['phoneNumber']"></control-messages>
+            </div>
+
+            <div class="row" >
+            <div class="form-group col-sm-6" >
+              <label for="website" translate>City Name</label>
+              <input id="website" formControlName="website" type="type" class="form-control"
+                placeholder="{{'city name' | translate}}" [ngClass]="{ 'is-invalid': f.website.errors }">
+              <control-messages class="alert-align" [control]="registerForm.controls['website']"></control-messages>
+            </div>
+            <div class="form-group col-sm-6" >
+                <label for="domain" translate>Company Name</label>
+                <input id="domain" formControlName="domain" type="type" class="form-control"
+                  placeholder="{{'Company name' | translate}}" [ngClass]="{ 'is-invalid': f.domain.errors }">
+                <control-messages class="alert-align" [control]="registerForm.controls['domain']"></control-messages>
+              </div>
+          </div>
+        
+            <div class="form-group">
+              <label class="control-label" translate>Address</label>
+              <input id="address" placeholder="search for location" autocorrect="off" autocapitalize="off"
+                spellcheck="off" class="form-control" #search formControlName="address"
+                [ngClass]="{ 'is-invalid': f.address.errors }">
+              <control-messages class="alert-align" [control]="registerForm.controls['address']"></control-messages>
+            </div>
+            <div class="col-sm-12 padd0 file-upload">
+              <div class="form-group row">
+                <!-- <label for="photo" class="control-label" (change)="fileChangeEvent($event)"  translate>Image Upload</label> -->
+                <input type="file" (change)="fileChangeEvent($event)" title="{{ ' Upload Your Image' | translate }}" />
+                <div class="col-sm-12">
+                  <div>
+                    <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true"
+                      [aspectRatio]="4 / 3" [resizeToWidth]="128" [cropperMinWidth]="128" [onlyScaleDown]="true"
+                      [roundCropper]="false" format="png" outputType="base64" (imageCropped)="imageCropped($event)"
+                      (imageLoaded)="imageLoaded()" (cropperReady)="cropperReady()"
+                      (loadImageFailed)="loadImageFailed()" [style.display]="showCropper ? null : 'none'">
+                    </image-cropper>
+                  </div>
+                  <img [src]="croppedImage" alt="taxideal crop image"/>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 form-btn text-center">
+            <button type="submit" class="btn btn-success" (click)="saveRegistration(registerForm.value)"
+              translate>Save</button>&nbsp;
+            <button (click)="gotoLogin()" type="button" class="btn btn-info" translate>Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--</div>-->

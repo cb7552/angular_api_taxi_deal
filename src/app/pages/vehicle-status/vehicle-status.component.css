@@ -1,0 +1,15 @@
+div {
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: gray;
+}
+.is-success {
+  background-color: springgreen;
+}
+.is-warning {
+  background-color: yellow;
+}
+.is-danger {
+  background-color: gray;
+}

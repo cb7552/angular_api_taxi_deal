@@ -1,0 +1,161 @@
+<div class="content-wrapper">
+  <div class="main-content">
+    <div class="container-fluid">
+      <div class="boxes search-item">
+        <div class="row">
+          <div *ngIf="bookMyTaxi?.length" class="col-md-10">
+            <div class="admin-home-tab">
+              <div class="col-6"><h3>Offline Booking</h3></div>
+            <!--  <div align="right"><button (click)="routeTo()" class="btn btn-primary right">Ride Far</button></div>-->
+            </div>
+          </div>
+        </div>
+  
+        <div class="row">
+           <div class="col-6">
+              <div *ngIf="bookMyTaxi">
+                  <form class="form" [formGroup]="bookingSMSForm">
+                   <div class="row">
+                      <div class="form-group col-md-12">
+                          <label class="control-label" translate>Name</label>
+                          <input id="name" type="text" class="form-control" formControlName="name"
+                            [ngClass]="{'is-invalid': f.name.errors }">
+                          <control-messages class="alert-align" [control]="bookingSMSForm.controls['name']"
+                            [controlMessage]="'Name is required'"></control-messages>
+                        </div>
+                   </div>
+                   <div class="row">
+                      <div class="form-group col-md-12">
+                        <label class="control-label" translate>Phone Number</label>
+                           <international-phone-number id="phoneNumber" type="text" class="form-control" formControlName="phoneNumber"
+                          placeholder="Enter phone number"  [defaultCountry]="'in'" [required]="true" name="phoneNumber" 
+                          [allowedCountries]="['in', 'ch']"  [ngClass]="{ 'is-invalid': f.phoneNumber.errors }"></international-phone-number>
+                          <control-messages class="alert-align" [control]="bookingSMSForm.controls['phoneNumber']"></control-messages>
+                  </div>
+                    </div>
+                    
+                    <div class="row">
+                      <div class="form-group col-md-12 pt-4">
+                        <b> <label class="control-label" translate>Source Address</label></b>
+                        <input id="source" formControlName="source" name="source" type="text" placeholder="{{'Source Address' | translate}}" autocorrect="off" autocapitalize="off"
+                          spellcheck="off" class="form-control rounded-0" aria-expanded="true" aria-owns="algolia-autocomplete-listbox-0" #sourcesearch
+                          style="position: relative; vertical-align: top;" />
+                      </div>
+                      </div>
+                      <div class="row">
+                      <div class="form-group  col-md-12">
+                        <b> <label class="control-label" translate>Destination Address</label></b>
+                        <input type="text" formControlName="destination" placeholder="{{'Destination Address' | translate}}"
+                          autocorrect="off" autocapitalize="off" spellcheck="off" class="form-control rounded-0" id="destination" name="destination" #destinationsearch />
+                      </div>
+                      <div>
+                     <!-- <button type="submit" class="btn btn-primary search-result-btn" (click)="getSearchResult()"
+                                    translate>Search</button> --> </div>
+                                    
+                    </div>
+                    <div>
+                      <div class="row " style="position: relative; margin: 0px">
+                          <label class="rounded-0" >Travel KM & Time Display: {{this.totalKM}}</label>
+                        </div>    
+                        <div class="row">
+                          
+                            <div class=" col-6">
+                               <label class="form-control rounded-0">BasePrice: {{myRide?.baseFare}}</label>
+                              </div>
+                            <div class="col-6">
+                             <label class="form-control rounded-0">Price: {{myRide?.price}}</label>
+                              </div>
+                            </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <label class="form-control rounded-0">TotalWaitingTimePrice: {{myRide?.totalWaitTimePrice}}</label>
+                              </div>
+                             <div class="col-6">
+                                 <label class="form-control rounded-0">TotalWaitingTime:{{myRide?.totalWaitTime}}</label>
+                              </div>
+                            </div>    
+                        <div class="row">
+                            <div class=" col-6">
+                                <label for="role" translate> TotalPrice:</label>
+                                <input formControlName="totalPrice" name="totalPrice"  class="form-control rounded-0" required>
+                              <!-- <label class="form-control rounded-0">TotalPrice: {{myRide?.totalPrice}}</label> -->
+                              </div>
+                                <div class="col-6">
+                                    <label for="role" translate>UserTotalPricer:</label>
+                                     <input formControlName="userTotalPrice" name="userTotalPrice"  class="form-control rounded-0" required>
+                                  <!-- <label class="form-control rounded-0">UserTotalPrice: {{myRide?.userTotalPrice}}</label> -->
+                                </div>
+                              </div>  
+                      </div>  	              
+                    <div class="row">
+                    <div class="form-group col-md-12">
+                      <b> <label for="role" translate>Select Driver</label>
+                        <select id="role" formControlName="rolename" class="form-control"
+                          (change)="selectDriver($event.target.value)">
+                          <option value="" disabled translate>Select Driver</option>
+                          <option *ngFor="let t of bookMyTaxi; let i = index" value={{t.driverId}}>{{t.name}} -
+                            {{t.driverStatus}}</option>
+                        </select></b>
+                    </div>
+                    </div>
+                    <div >
+                      <div *ngIf="edited">
+                          <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label class="form-control rounded-0">Name: {{this.currentName}}</label>
+                                  </div>
+                              
+                                </div>
+                                <div class="col-6">
+                                <div class="form-group">
+                                    <label class="form-control rounded-0">Phone No: {{this.driverNumber}}</label>
+                                
+                                  </div>
+                                </div>  
+                            </div>  
+                            <div class="row">
+                                    <div class="col-6">
+                                      <div class="form-group">
+                                        <label class="form-control rounded-0">Number Plate: {{this.numberPlate}}</label>
+                                        </div>
+                                        </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label class="form-control rounded-0">Status: {{this.driverStatus}}</label>
+                                            </div>
+                                    </div>
+                                </div>
+                      </div>
+                    </div>
+                  <div class="row">
+                    <div class="form-group col-md-12">
+                      <b> <label for="message" translate>Comment/Message</label>
+                        <textarea class="form-control margined--bottom-half" formControlName="message" id="message"
+                          rows="5" name="remarks" placeholder="Sending Details"
+                          [ngClass]="{ 'is-invalid': f.message.errors }"></textarea> </b>
+                      <control-messages class="alert-align" [control]="bookingSMSForm.controls['message']"
+                        [controlMessage]="'Please enter message'"></control-messages>
+                    </div>
+                  </div>        
+                    <div class="col-sm-12 form-btn text-center">
+                      <button [disabled]="loading" class="btn btn-success" (click)="bookBySMS(bookingSMSForm.value)"
+                        translate>Send</button>&nbsp;
+                    </div>
+                    <br>
+                  </form>
+                </div>
+             </div>
+             <div class="col-6" >
+                <div id="map-canvas"> 
+                  <agm-map [latitude]="lat1" [longitude]="lng1" >
+                      <agm-marker [latitude]="lat2" [longitude]="lng2"></agm-marker>
+                  </agm-map>
+                </div>
+            </div>
+            </div>
+           
+          </div>
+        </div>
+            </div>
+    </div>

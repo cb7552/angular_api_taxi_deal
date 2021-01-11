@@ -1,0 +1,237 @@
+<!-- driverpage -->
+<div>
+  <section class="st_banner">
+    <div class="search_box_con h-100">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-4 sidebar-container">
+            <div class="seach_form container">
+              <div class="container-fluid">
+                <div class="card-deck">
+                  <div class="col-sm-12">
+                    <form [formGroup]="searchForm" class="form">
+                      <div class="form-row ">
+                        <div class="col-md-12 px-3 search_box_menu text-center">
+                          <div class="display">
+                            <ul class="nav nav-tabs">
+                              <li class="col-4 s_b_m nav-item " (click)="categoryTaxi()"><a value="TAXI"
+                                  class="nav-link active" data-toggle="pill" href="#taxi" #categoryTAXI>ONE WAY</a>
+                              </li>
+                              <li class="col-4 s_b_m nav-item" (click)="categoryOut()"><a value="OUTSTAION"
+                                  class="nav-link" data-toggle="pill" href="#tourist" #categoryOUT>ROUND TRIP</a>
+                              </li>
+                              <li class="col-4 s_b_m nav-item" (click)="categoryRent()"><a value="RENT" class="nav-link"
+                                  data-toggle="pill" href="#rent" #categoryRENT>RENTALS</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div class="tab-content">
+                          <div class="tab-pane fade show active" id="taxi" role="tabpanel" aria-labelledby="taxi-tab">
+                            <div class="form-group col-md-12">
+                              <label class="mb-0" for="inputEmail4" translate>Pickup Location</label>
+                              <input type="text" placeholder="{{'Source Address' | translate}}" autocorrect="off"
+                                autocapitalize="off" spellcheck="off" class="form-control ds-input" role="combobox"
+                                aria-expanded="true" aria-owns="algolia-autocomplete-listbox-0" formControlName="source"
+                                id="source" name="source" #sourcesearch
+                                style="position: relative; vertical-align: top;" />
+                              <img src="assets/img/custom/locate.png" draggable="false" alt="locate-icon"
+                                class="locate-icon">
+                            </div>
+                            <div class="form-group col-md-12">
+                              <label class="mb-0" for="inputEmail4" translate>Drop Location</label>
+                              <input type="text" placeholder="{{'Destination Address' | translate}}" autocorrect="off"
+                                autocapitalize="off" spellcheck="off" class="form-control" formControlName="destination"
+                                id="destination" name="destination" #destinationsearch />
+                              <img src="assets/img/custom/locate.png" draggable="false" alt="locate-icon"
+                                class="locate-icon">
+                            </div>
+                            <div class="form-group row">
+                              <div class="form-group col-md-6">
+                                <label for="inputState" translate>CarType</label>
+                                <select class="form-control" formControlName="cartype" id="cartype" name="cartype">
+                                  <option value="" disabled translate>Select a cartype </option>
+                                  <option vlaue="item?.code" [ngValue]="item?.code" *ngFor="let item of careTypeData">
+                                    {{item?.name}}
+                                  </option>
+                                </select>
+                              </div>
+                              <div class="form-group col-md-6">
+                                <label for="inputState" translate>Time</label>
+                                <ejs-datetimepicker id='datetimepicker' format='yyy.MM.dd HH:mm' formControlName="dateTime"
+                                  placeholder='Select a date' [value]='dateValue'>
+                                </ejs-datetimepicker>
+                                <!-- <label for="inputState" translate>Time</label>
+                              <select class="form-control" formControlName="cartype" id="cartype" name="cartype">
+                                <option vlaue="item" >Immediate Booking </option>
+                                <option vlaue="item" >Schedule for Later </option>
+                              </select> -->
+                              </div>
+                            </div>
+                            <div class="form-group row" >
+                              <div class="col-4">
+                                  <label class="mb-0 det" for="inputEmail4" translate>Distance: {{this.distance}}</label>
+                              </div>
+                              <div class="col-4">
+                                  <label class="mb-0 det" for="inputEmail4" translate>Durations: {{this.durations}}</label>
+                               </div>
+                               <div class="col-4">
+                                <label class="mb-0 det" for="inputEmail4" translate>TotalPrice: {{this.totalprice}}</label>
+                             </div>
+                            </div>
+                          </div>
+
+                          <div class="tab-pane fade" id="rent" role="tabpanel" aria-labelledby="rent-tab">
+                            <div class="form-group col-md-12">
+                              <label class="mb-0" for="inputEmail4" translate>Pickup Location</label>
+                              <input type="text" placeholder="{{'Source Address' | translate}}" autocorrect="off"
+                                autocapitalize="off" spellcheck="off" class="form-control ds-input" role="combobox"
+                                aria-expanded="true" aria-owns="algolia-autocomplete-listbox-0" formControlName="source"
+                                id="source" name="source" #Sourcesearch
+                                style="position: relative; vertical-align: top;" />
+                              <img src="assets/img/custom/locate.png" draggable="false" alt="taxideal locate-icon"
+                                class="locate-icon">
+                            </div>
+                            <div class="form-group row">
+                              <div class="form-group col-md-6">
+                                <label for="inputState" translate>CarType</label>
+                                <select class="form-control" (change)="changeCarType($event.target.value)" formControlName="cartype" id="cartype" name="cartype">
+                                  <option value="" disabled translate>Select a cartype </option>
+                                  <option vlaue="item?.code" [ngValue]="item?.code" *ngFor="let item of careTypeData">
+                                    {{item?.name}}
+                                  </option>
+                                </select>
+                              </div>
+                              <div class="form-group col-md-6">
+                                <label for="inputState" translate>Time</label>
+                                <ejs-datetimepicker id='datetimepicker' format='yyyy.MM.dd HH:mm' formControlName="dateTime"
+                                  placeholder='Select a date' [value]='dateValue'>
+                                </ejs-datetimepicker>
+                                <!-- <select class="form-control" formControlName="cartype" id="cartype" name="cartype">
+                                    <option vlaue="item" >Immediate Booking </option>
+                                    <option vlaue="item" >Schedule for Later </option>
+                                  </select> -->
+                              </div>
+                            </div>
+                          </div>
+                          <div class="tab-pane fade" id="tourist" role="tabpanel" aria-labelledby="tourist-tab">
+                            <div class="form-group col-md-12">
+                              <label class="mb-0" for="inputEmail4" translate>Pickup Location</label>
+                              <input type="text" placeholder="{{'Source Address' | translate}}" autocorrect="off"
+                                autocapitalize="off" spellcheck="off" class="form-control ds-input" role="combobox"
+                                aria-expanded="true" aria-owns="algolia-autocomplete-listbox-0" formControlName="source"
+                                id="source" name="source" #SourcesSearch
+                                style="position: relative; vertical-align: top;" />
+                              <img src="assets/img/custom/locate.png" draggable="false" alt="taxideal locate-icon"
+                                class="locate-icon">
+                            </div>
+                            <div class="form-group row">
+                              <div class="form-group col-md-6">
+                                <label for="inputState" translate>Cartypes</label>
+                                <select class="form-control" formControlName="cartype" id="cartype" name="cartype">
+                                  <option value="" disabled translate>Select a cartype </option>
+                                  <option vlaue="item?.code" [ngValue]="item?.code" *ngFor="let item of careTypeData">
+                                    {{item?.name}}
+                                  </option>
+                                </select>
+                              </div>
+                              <div class="form-group col-md-6">
+                                <label for="inputState" translate>Time</label>
+                                <ejs-datetimepicker id='datetimepicker' format='yyy.MM.dd HH:mm' formControlName="dateTime"
+                                  placeholder='Select a date' [value]='dateValue'>
+                                </ejs-datetimepicker>
+                                <!-- <select class="form-control" formControlName="cartype" id="cartype" name="cartype">
+                                        <option vlaue="item" >Immediate Booking </option>
+                                        <option vlaue="item" >Schedule for Later </option>
+                                      </select> -->
+                              </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                              <label class="name" translate>TRIP</label>
+                              <div class="row">
+                                <div class="radio col-6">
+                                  <label><input type="radio" name="optradio" value="Single" checked
+                                      translate>Local</label>
+                                </div>
+                                <div class="radio col-6">
+                                  <label><input type="radio" name="optradio" value="Single" translate>Out
+                                    Station</label>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12"><button type="button" class="btn btn-primary search-result-btn"
+                          (click)="getSearchResult()" translate>Search</button></div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div class="cards">
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="card-deck" [ngClass]="resultloader ? 'loader-overlay' : 'load-loading'">
+                      <div *ngFor="let item of finalSearchResult; let i = index"
+                        class="col-md-12 col-lg-12 col-xl-12 col-sm-12 col-xs-12 {{ (i+1) % 2 ? '' : 'pad-right2'}} {{ (i+1) % 3 ? '' : 'pad-right'}}">
+                        <div class="card" (click)="getCarSearchResult(item)">
+                          <div class="card-card">
+                            <div class="container-fluid">
+                              <div class="row">
+                                <label class="name1 d-block col-4 no-gutters text-right d-sm-none"> Waiting time 10 min
+                                </label>
+                                <label class="name col-8 gutters">{{item.name}}</label>
+                                <label class="name1 col-4 no-gutters text-right d-none d-sm-block"> Waiting time 10 min
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card-body">
+                            <star-rating [(value)]="item.star" checkedcolor="orange" size="20" #starrating>
+                            </star-rating>
+                            <label class="name2"> {{item.star}} Ratings & {{item.totalComments}} Comments </label>
+                          </div>
+                          <div class="lable">
+                            <div class="card-body">
+                              <label class="name2"> {{item.hour}} Hours & {{item.km}} Kms &nbsp;</label>
+                               <label class="name3" *ngIf="!isIndia"> ₹{{item.price}}</label>
+                              <label class="name3"  *ngIf="isIndia"> {{item.price}}</label> 
+                              <img src="assets/img/custom/rupee.png" alt="taxideal rupee-icon" class="iconrupee iconn" *ngIf="!isIndia">
+                              <!-- <img src="assets/img/custom/rupee.png" alt="taxideal rupee-icon" class="iconrupee iconn" *ngIf="isIndia"> -->
+                              <img src="assets/img/custom/wifi.png" alt="taxideal wifi-icon" class="iconwifi iconn">
+                              <img src="assets/img/custom/taxi.png" alt="taxideal taxi-icon" class="icontaxi iconn">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="no-data-found text-center">
+                    <div [ngClass]="resultloader ? 'loader-overlay' : 'load-loading'" *ngIf="!finalSearchResult.length">
+                      No data Found.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-8 map no-gutters">
+            <agm-map [latitude]="lat" [longitude]="lng" [zoom]="14"
+              (mapClick)="addMarker($event.coords.latitude, $event.coords.longitude)">
+              <agm-marker *ngFor="let marker of finalSearchResult" [latitude]="marker.latitude"
+                [longitude]="marker.longitude" [markerDraggable]="false" (markerClick)="selectMarker($event)">
+                <agm-info-window [disableAutoPan]="false">
+                  Name Online: <strong>{{marker?.name}}</strong><br>
+                  CarType: <strong>{{marker?.cartype}}</strong><br>
+                  PhoneNumber: <strong>{{marker?.phoneNumber}}</strong><br>
+                  Login Status: <strong>{{marker?.driverStatus}}</strong>
+                </agm-info-window>
+              </agm-marker>
+            </agm-map>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<!-- driverpage -->

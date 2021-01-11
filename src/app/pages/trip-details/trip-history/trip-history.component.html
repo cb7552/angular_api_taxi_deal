@@ -1,0 +1,104 @@
+<div class="content-wrapper">
+  <div class="main-content">
+    <div class="container-fluid">
+      <div class="boxes">
+        <div class="row" [hidden]="isEdit">
+          <div class="col-md-10">
+             <h3 translate> Online Booking Details</h3>
+            <!-- <p>
+                            <button (click)="addDriver()" type="button" class="btn btn-success" translate>Add New Driver</button>
+                        </p> -->
+              <div class="row">
+                 <div class="col-6">
+            <p *ngIf="isShow"> <button (click)="offlinetrip()" type="button" class="btn btn-info" translate>Offline
+                Booking
+                Details</button></p>
+              </div>
+              <div class="col-6">
+                <nav class="navbar" style="background-color:white">
+                    <input class="form-control" font-color="#000" placeholder="Filter Values..." type="text" name="search"
+                      [(ngModel)]="filterText">
+                  </nav></div></div>
+            <div class="content table-responsive table-full-width table-striped">
+              <table class="table table-bordered table-hover">
+                <tr>
+                  <th class="info" translate>Index</th>
+                  <th translate>Payment</th>
+                  <th translate>Name & CarType</th>
+                  <th translate>Source</th>
+                  <th translate>Destination</th>
+                  <th translate>TotalPrice</th>
+                  <th translate>Date&Time</th>
+                  <th translate>Action</th>
+                </tr>
+                <tr *ngFor="let exp of (onlineDetails | customfilter : {
+                  driverName: filterText, source: filterText, destination: filterText, userTotalPrice: filterText,
+                  date: filterText, type: filterText} : false);let i=index" >
+                  <td>{{i+1}}</td>
+                  <td>{{exp.payment}}</td>
+                  <td>{{exp.driverName}}<br />{{exp.type}}</td>
+                  <td>{{exp.source}}</td>
+                  <td>{{exp.destination}}</td>
+                  <td>{{exp.userTotalPrice}}</td>
+                  <td>{{exp.updatedOn | date:'medium'}}</td>
+                  <td style="width: 80px">
+                    <button (click)="onShow(exp.id)" type="button" class="btn btn-info" translate>View</button>
+                    <!-- <i class="fa fa-search action" (click)="onShow(exp.id)"></i> -->
+                  </td>
+                </tr>
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="row" [hidden]="!isEdit">
+            <div class="col-md-10">
+              <h3 translate>Offline Booking Details</h3>
+              <div class="row">
+                  <div class="col-6">
+              <p> <button (click)="getOnlineDetails()" type="button" class="btn btn-info" translate>Online Booking
+                  Details</button></p></div>
+                  <div class="col-6">
+                  <nav class="navbar" style="background-color:white">
+                      <input class="form-control" font-color="#000" placeholder="Filter Values..." type="text" name="search"
+                        [(ngModel)]="filterText">
+                    </nav></div></div>
+              <form class="form">
+                <div class="content table-responsive table-full-width table-striped">
+                  <table class="table table-bordered table-hover">
+                    <tr>
+                      <th translate>Index</th>
+                      <th translate>Source</th>
+                      <th translate>Destination</th>
+                      <th translate>PhoneNumber</th>
+                      <th translate>Comment</th>
+                      <th translate>DateTime</th>
+                      <th translate>Action</th>
+                    </tr>
+                    <tr *ngFor="let exp of (offlineDetails | customfilter : {
+                      driverName: filterText, sourceAddrss: filterText,destAddress: filterText,userPhoneNumber: filterText,
+                  date: filterText, updatedOn: filterText } : false);let i=index">
+                      <td>{{i+1}}</td>
+                      <td>{{exp.sourceAddrss}}</td>
+                      <td>{{exp.destAddress}}</td>
+                      <td>{{exp.userPhoneNumber}}</td>
+                      <td>{{exp.comment}}</td>
+                      <td>{{exp.updatedOn | date:'medium'}}</td>
+                      <td style="width: 80px">
+                        <i class="fa fa-search action" (click)="onShow(exp.id)"></i>
+                      </td>
+                    </tr>
+                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                  </table>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

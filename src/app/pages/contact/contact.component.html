@@ -1,0 +1,40 @@
+<div class="content-wrapper">
+  <div class="main-content">
+    <div class="container-fluid">
+      <div class="boxes">
+
+        <div class="col-md-12">
+          <div class="col-md-10">
+            <h3 translate> Contact details</h3>
+            <div class="rowl">
+              <nav class="navbar" style="background-color:white">
+                <input class="form-control" font-color="#000" placeholder="Filter Values..." type="text" name="search"
+                  [(ngModel)]="filterText">
+              </nav>
+            </div>
+          </div>
+          <div class="content table-responsive table-full-width table-striped">
+            <table class="table table-bordered table-hover">
+              <tr>
+                <th class="info" translate>Index</th>
+                <th translate>Name</th>
+                <th translate>Email</th>
+                <th translate>Message</th>
+                <th translate>StartDate</th>
+              </tr>
+              <!-- <tr *ngFor="let exp of contact ;let i=index"> -->
+              <tr *ngFor="let exp of (contact | customfilter : {name: filterText, 
+                      email: filterText, message: filterText} : false);let i=index">
+                <td>{{i+1}}</td>
+                <td>{{exp.name}}</td>
+                <td>{{exp.email}}</td>
+                <td>{{exp.message}}</td>
+                <td>{{exp.startDate | date:'medium'}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

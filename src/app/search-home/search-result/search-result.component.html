@@ -1,0 +1,148 @@
+<div class="container search-details">
+    <div class="row1">
+        <div class="col-sm-12">
+            <div class="commentHeader">
+                <h2 translate>Driver Information</h2>
+                <!-- <div class="goHomeBtn" (click)="goHome()"></div> -->
+                <div class="goHomeBtn">
+                    <p> <button (click)="goHome()" type="button" class="btn btn-info" translate>Back
+                        </button></p>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-sm-12" *ngIf="taxiInfo">
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="search-item">
+                        <div class="row info-padding">
+                            <div class="col-sm-12 driver-info driver-img" align="center">
+                                <img [src]="taxiInfo.imageInfo?.imageUrl" style="height:106px;width:106px"
+                                    class="w3-circle img-responsive"
+                                    onError="this.src = '../../assets/img/minilogo.png'" alt="taxideal logo">
+                            </div>
+
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <th translate>Driver Name</th>
+                                        <td translate>{{taxiInfo.name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th translate>Car Type</th>
+                                        <td translate>{{taxiInfo.cartype}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th translate>Stars</th>
+                                        <td translate>{{taxiInfo.star}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th translate>Total Comment</th>
+                                        <td translate>{{taxiInfo.totalComments}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 mapContainer">
+                    <h3 class="tag-position">
+                        <strong translate>Contact form</strong>
+                    </h3>
+                    <form action="" class="detail-contact-form" [formGroup]="contactForm"
+                        (ngSubmit)="submitContactForm($event, contactForm.value)">
+                        <div class="form-group">
+                            <label class="control-label" translate>Name</label>
+                            <input type="text" required id="name" class="form-control" formControlName="name"
+                                [ngClass]="{ 'is-invalid': f.name.errors }">
+                            <control-messages class="alert-align" [control]="contactForm.controls['name']"
+                                [controlMessage]="'Name is required'"></control-messages>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label" translate>Email</label>
+                            <input type="text" required id="email" class="form-control" formControlName="email"
+                                [ngClass]="{ 'is-invalid': f.email.errors }">
+
+                            <control-messages class="alert-align" [control]="contactForm.controls['email']"
+                                [controlMessage]="'Email is required'"></control-messages>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label" translate>PhoneNumber</label>
+                            <input type="number" id="phonenumber" class="form-control" formControlName="phonenumber"
+                                minlength='10' [ngClass]="{ 'is-invalid': f.phonenumber.errors }">
+                            <control-messages class="alert-align" [control]="contactForm.controls['phonenumber']"
+                                [controlMessage]="'PhoneNumber is required'"></control-messages>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label" translate>subject</label>
+                            <input type="text" required id="subject" class="form-control" formControlName="subject"
+                                [ngClass]="{ 'is-invalid': f.subject.errors }">
+                            <control-messages class="alert-align" [control]="contactForm.controls['subject']"
+                                [controlMessage]="'subject is required'"></control-messages>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" translate>Message</label>
+                            <textarea type="text" required id="message" class="form-control" formControlName="message"
+                                [ngClass]="{ 'is-invalid': f.message.errors }"></textarea>
+                            <control-messages class="alert-align" [control]="contactForm.controls['message']"
+                                [controlMessage]="'message is required'"></control-messages>
+                        </div>
+                        <button class="btn btn-success" translate>Save</button>&nbsp;
+
+                    </form>
+                    <div class="mapPageComments">
+                        <agm-map [latitude]=taxiInfo.latitude [longitude]=taxiInfo.longitude [fullscreenControl]=true
+                            [mapTypeControl]=true>
+                            <agm-marker [latitude]=taxiInfo.latitude [longitude]=taxiInfo.longitude
+                                [markerDraggable]='false'></agm-marker>
+                        </agm-map>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 text-right">
+                            <div class="info" translate> {{taxiInfo?.latitude}}</div>
+                            <div class="info" translate> {{taxiInfo?.longitude}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <form #valForm="ngForm" class="form-validate"
+        (ngSubmit)="valForm.form.valid && submitComment($event, valForm.value)" novalidate="">
+        <div class="row comment-area">
+            <div class="col-sm-8">
+                <div class="msg-area">
+                    <div class="msg-item" *ngFor="let review of reviews;let i=index">
+                        <strong class="user-name" translate>{{review.userFullName}}:</strong>
+                        <span class="msg-text">
+                            <rating [(ngModel)]="reviews[i].rating" [ngModelOptions]="{standalone: true}"></rating>
+                        </span>
+                        <span class="msg-text" translate> {{review.comment}}</span>
+                        <span class="pull-right" translate>{{review.formattedDate}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8" *ngIf="authorized">
+                <div class="rating">
+                    <div class="rating-text" translate>Rate It:</div>
+                    <rating [(ngModel)]="data.rate" style="color: #fed330;" [max]="max" name="rating" #rating="ngModel"
+                        required></rating>
+
+
+                    <br>
+                    <small translate>Rating is required.</small>
+                </div>
+                <div class="comment-footer">
+                    <textarea type="text" placeholder="Your comment" cols="30" rows="10" class="form-control"
+                        name="comment" #comment="ngModel" [(ngModel)]="data.comment" required></textarea>
+                    <button class="btn btn-primary" [disabled]="valForm.invalid" translate>
+                        <i class="fa fa-send"></i> Send</button>
+                </div>
+
+            </div>
+        </div>
+    </form> -->
+</div>
